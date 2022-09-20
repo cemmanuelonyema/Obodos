@@ -15,15 +15,13 @@ This is a solution to the [REST Countries API with color theme switcher challeng
   - [My process](#my-process)
     - [Built with](#built-with)
     - [What I learned](#what-i-learned)
-    - [Continued development](#continued-development)
     - [Useful resources](#useful-resources)
   - [Author](#author)
-  - [Acknowledgments](#acknowledgments)
 - [Frontend Mentor - REST Countries API with color theme switcher](#frontend-mentor---rest-countries-api-with-color-theme-switcher)
-  - [Building your project](#building-your-project)
-  - [Deploying your project](#deploying-your-project)
+  - [Cloning and setting up this project](#cloning-and-setting-up-this-project)
+  - [Deployment](#deployment)
   - [Thank you very much for checking out my project 🙌🙌](#thank-you-very-much-for-checking-out-my-project-)
-    - [I'm also looking for my First software role 🦾, you can reach out to me via](#im-also-looking-for-my-first-software-role--you-can-reach-out-to-me-via)
+    - [Please, if you have or know of any opening for software developer position, contact me through](#please-if-you-have-or-know-of-any-opening-for-software-developer-position-contact-me-through)
 
 ## Overview
 
@@ -42,8 +40,8 @@ Users should be able to:
 
 ### Links
 
-- Github URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- [Github URL](https://github.com/cemmanuelonyema/Obodos)
+- [Live Site URL](obodos.netlify.app/)
 
 ## My process
 
@@ -79,29 +77,30 @@ const proudOfThisFunc = () => {
 };
 ```
 
-### Continued development
+<!-- ### Continued development
 
 Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+**Note: Delete this note and the content within this section and replace with your own plans for continued development.** -->
 
 ### Useful resources
 
 - [Writing markdown, I'd recommend checking out The Markdown Guide](https://www.markdownguide.org/) to learn more.
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+<!-- - [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
+- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept. -->
 
 ## Author
 
-- Website - [Emmanuel C. Onyema](https://ceonyema.vercel.app)
-- Email - [cemmanuelOnyema@gmail.com](mail:to:cemmanuelonyema@gmail.com)
+<!-- - Website - [Emmanuel C. Onyema](https://ceonyema.vercel.app) -->
+
+- Email - [cemmanuelOnyema@gmail.com](mailto:cemmanuelonyema@gmail.com)
 - Twitter - [@ceonyema\_](https://www.twitter.com/ceonyema_)
-- LinkedIN - [@emmanuel-c-onyema](https://www.linkedin.com/emmanuel-c-onyema)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
+- LinkedIN - [@emmanuel-c-onyema](https://www.linkedin.com/in/emmanuel-c-onyema/)
+- Frontend Mentor - [@cemmanuelonyema](https://www.frontendmentor.io/profile/cemmanuelonyema)
 
-## Acknowledgments
+<!-- ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit. -->
 
 # Frontend Mentor - REST Countries API with color theme switcher
 
@@ -109,31 +108,27 @@ This is where you can give a hat tip to anyone who helped you out on this projec
 
 There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
 
-## Building your project
+## Cloning and setting up this project
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+<!-- Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
 
 1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
 2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
 3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
 4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
 5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on. -->
 
-## Deploying your project
+## Deployment
 
-As mentioned above, there are many ways to host your project for free. Our recommend hosts are:
-
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+- Netlify was used for deployment - [Netlify](https://www.netlify.com/)
 
 ## Thank you very much for checking out my project 🙌🙌
 
-### I'm also looking for my First software role 🦾, you can reach out to me via
+### Please, if you have or know of any opening for software developer position, contact me through
 
-- Email - [cemmanuelOnyema@gmail.com](mail:to:cemmanuelonyema@gmail.com)
+- Email - [cemmanuelOnyema@gmail.com](mailto:cemmanuelonyema@gmail.com)
 - Twitter - [@ceonyema\_](https://www.twitter.com/ceonyema_)
-- LinkedIN - [@emmanuel-c-onyema](https://www.linkedin.com/emmanuel-c-onyema)
+- LinkedIN - [@emmanuel-c-onyema](https://www.linkedin.com/in/emmanuel-c-onyema/)
 
 🚀

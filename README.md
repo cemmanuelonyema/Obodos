@@ -14,7 +14,6 @@ This is a solution to the [REST Countries API with color theme switcher challeng
     - [Links](#links)
   - [My process](#my-process)
     - [Built with](#built-with)
-    - [What I learned](#what-i-learned)
     - [Useful resources](#useful-resources)
   - [Author](#author)
 - [Frontend Mentor - REST Countries API with color theme switcher](#frontend-mentor---rest-countries-api-with-color-theme-switcher)
@@ -54,6 +53,7 @@ Users should be able to:
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
 - [Styled Components](https://styled-components.com/) - For styles
+<!--
 
 ### What I learned
 
@@ -71,11 +71,11 @@ To see how you can add code snippets, see below:
 }
 ```
 
-```js
+````js
 const proudOfThisFunc = () => {
   console.log("🎉");
 };
-```
+``` -->
 
 <!-- ### Continued development
 
@@ -104,7 +104,7 @@ This is where you can give a hat tip to anyone who helped you out on this projec
 
 # Frontend Mentor - REST Countries API with color theme switcher
 
-![Design preview for the REST Countries API with color theme switcher coding challenge](./design/desktop-preview.jpg)
+![Design preview for the REST Countries API with color theme switcher coding challenge](./src//design/desktop-preview.jpg)
 
 There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
 
@@ -132,3 +132,4 @@ There is also a `style-guide.md` file containing the information you'll need, su
 - LinkedIN - [@emmanuel-c-onyema](https://www.linkedin.com/in/emmanuel-c-onyema/)
 
 🚀
+````

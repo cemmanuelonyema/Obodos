@@ -1,5 +1,14 @@
-import React from "react";
+import React, { Fragment } from "react";
+import { Countries } from "./components/countries/Countries";
+import { Header } from "./components/layout/header/Header";
 
 export const App = () => {
-  return <div>App</div>;
+  return (
+    <Fragment>
+      <Header />
+      <main>
+        <Countries />
+      </main>
+    </Fragment>
+  );
 };

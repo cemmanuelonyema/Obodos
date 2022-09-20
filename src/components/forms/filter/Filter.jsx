@@ -6,13 +6,16 @@ export const Filter = () => {
     console.log(e.target.value);
   };
   return (
-    <form className="form filter__form">
-      {" "}
+    <div className="select">
       <select name="label" onChange={handleChange}>
-        <option>Family</option>
-        <option>Professional</option>
-        <option>Friend</option>
+        <option>Filter by Region</option>
+        <option value="africa">Africa</option>
+        <option value="america">America</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceania">Oceania</option>
       </select>
-    </form>
+      <span>icon</span>
+    </div>
   );
 };

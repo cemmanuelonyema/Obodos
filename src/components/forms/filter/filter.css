@@ -1,0 +1,23 @@
+.filter__form {
+  padding: 0 1rem;
+  border-radius: 0;
+  border: 1px solid rgba(1, 8, 22, 0.298);
+}
+
+.filter__form:focus-within {
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+select {
+  padding: 1rem;
+  border: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+option {
+  padding: 1rem;
+  border: 1px solid black;
+}

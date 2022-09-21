@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import { Country } from './components/countries/country/Country';
 
 import { Layout } from './Layout';
 import { Home } from './pages/home/Home';
@@ -11,6 +12,8 @@ export const App = () => {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route path="/" index element={<Home />} />
+        <Route path="/:name" index element={<Country />} />
+
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

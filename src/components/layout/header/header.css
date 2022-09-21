@@ -13,8 +13,12 @@
   padding: 0 3rem;
 }
 
-.mode {
+.header__btn {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 5px;
+  cursor: pointer;
+
+  padding: 1rem;
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
 }

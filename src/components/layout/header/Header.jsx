@@ -1,11 +1,11 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FiSun, FiMoon } from 'react-icons/fi';
-import { setMode } from '../../../redux/country/countriesSlice';
+import { setMode, selectCountries } from '../../../redux/slices/countriesSlice';
 import './header.css';
 
 export const Header = () => {
-  const { darkMode } = useSelector((state) => state.countries);
+  const { darkMode } = useSelector(selectCountries);
   const dispatch = useDispatch();
 
   return (

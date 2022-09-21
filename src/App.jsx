@@ -2,8 +2,7 @@ import React, { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-import { Header } from './components/layout/header/Header';
-import { Layout } from './layout';
+import { Layout } from './Layout';
 import { Home } from './pages/home/Home';
 import { NotFound } from './pages/notfound/NotFound';
 
@@ -17,3 +16,6 @@ export const App = () => {
     </Routes>
   );
 };
+
+// https://restcountries.com/v3.1/name/{name}
+// https://restcountries.com/v3.1/name/peru

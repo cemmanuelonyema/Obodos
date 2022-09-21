@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap');
+
 :root {
   /* color - dark mode*/
   --dark-blue: hsl(209, 23%, 22%);
@@ -24,4 +26,8 @@
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+}
+
+body {
+  font-family: 'Nunito Sans', sans-serif;
 }

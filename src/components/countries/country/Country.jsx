@@ -1,22 +1,22 @@
-import React from "react";
-import "./country.css";
+import React from 'react';
+import './country.css';
 
-export const Country = () => {
+export const Country = ({ country }) => {
   return (
     <article className="country">
       <div className="country__img">
-        <img src="" alt="country image" />
+        <img src={country?.flags.svg} alt="country image" />
       </div>
       <div className="country__data">
-        <h2 className="country__name">Country Name</h2>
+        <h2 className="country__name">{country?.name.common}</h2>
         <div className="country__data_row">
-          <span>Population:</span> <span>81,0000</span>
+          <span>Population:</span> <span>{country?.population}</span>
         </div>
         <div className="country__data_row">
-          <span>Region:</span> <span>Europe</span>
+          <span>Region:</span> <span>{country?.region}</span>
         </div>
         <div className="country__data_row">
-          <span>Capital:</span> <span>Berlin</span>
+          <span>Capital:</span> <span>{country?.capital}</span>
         </div>
       </div>
     </article>
@@ -39,3 +39,11 @@ export const Country = () => {
 //      </p>
 //    </div>
 //  </article>;
+
+// "eslint-config-airbnb": "^19.0.4",
+// "eslint-config-prettier": "^8.5.0",
+// "eslint-plugin-import": "^2.26.0",
+// "eslint-plugin-prettier": "^4.2.1",
+// "eslint-plugin-react": "^7.30.1",
+//  "eslint-plugin-jsx-a11y": "^6.6.1",
+// "prettier": "^2.7.1"

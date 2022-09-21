@@ -2,14 +2,15 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { setMode, selectCountries } from '../../../redux/slices/countriesSlice';
-import './header.css';
+// import './header.css';
+import { StyledHeader } from './StyledHeader';
 
 export const Header = () => {
   const { darkMode } = useSelector(selectCountries);
   const dispatch = useDispatch();
 
   return (
-    <header className="header">
+    <StyledHeader>
       <div className="container header__container">
         <h1>Where in the world?</h1>
         <button className="btn header__btn" onClick={() => dispatch(setMode())}>
@@ -26,6 +27,6 @@ export const Header = () => {
           )}
         </button>
       </div>
-    </header>
+    </StyledHeader>
   );
 };

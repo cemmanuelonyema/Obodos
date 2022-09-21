@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import './App.css';
+import './styles/GlobalStyles.js';
 import { CountryDetail } from './components/countries/countryDetail/CountryDetail';
 
 import { Layout } from './Layout';

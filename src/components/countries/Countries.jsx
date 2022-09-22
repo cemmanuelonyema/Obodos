@@ -1,18 +1,21 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import "./countries.css";
-import { Country } from "./country/Country";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
+import './countries.css';
+import { Country } from './country/Country';
+import { selectCountries } from '../../redux/slices/countriesSlice';
 
 export const Countries = () => {
+  // const {countries} = useSelector(selectCountries)
+
   const [countries, setCountries] = useState([]);
 
-  const getCountries = async () => {
-    const res = await axios.get("https://restcountries.com/v3.1/all");
-    // console.log(res.data);
-    setCountries(res.data);
-  };
-
   useEffect(() => {
+    const getCountries = async () => {
+      const res = await axios.get('https://restcountries.com/v3.1/all');
+      // console.log(res.data);
+      setCountries(res.data);
+    };
     getCountries();
   }, []);
 

@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import {
+  getCountry,
+  selectCountries,
+} from '../../../redux/slices/countriesSlice';
 
 export const CountryDetail = () => {
+  // const {country} = useSelector(selectCountries)
+
   const [country, setCountry] = useState([]);
   const { name } = useParams();
 
@@ -16,6 +24,7 @@ export const CountryDetail = () => {
       setCountry(data);
     };
     getCountry();
+    // useDispatch(getCountry(name))
   }, [name]);
 
   return (

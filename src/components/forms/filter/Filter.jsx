@@ -1,6 +1,6 @@
 import React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
-import './filter.css';
+import './StyledFilter.js';
 
 export const Filter = () => {
   const handleChange = (e) => {

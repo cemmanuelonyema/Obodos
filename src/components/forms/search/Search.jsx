@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
-import './search.css';
+import { StyledSearch } from './StyledSearch.js';
 
 export const Search = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -15,7 +15,8 @@ export const Search = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form search__form">
+    <StyledSearch onSubmit={handleSubmit} className="form search__form">
+      {' '}
       <FiSearch className="icon" />
       <input
         type="text"
@@ -23,6 +24,6 @@ export const Search = () => {
         value={searchQuery}
         onChange={handleChange}
       />
-    </form>
+    </StyledSearch>
   );
 };

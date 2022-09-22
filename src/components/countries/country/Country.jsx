@@ -1,10 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import './country.css';
+import { StyledCountry } from './StyledCountry.js';
 
 export const Country = ({ country }) => {
   return (
-    <Link to={`details/${country?.name.common}`}>
+    <StyledCountry to={`details/${country?.name.common}`}>
       <article className="country">
         <div className="country__img">
           <img src={country?.flags?.svg} alt="country image" />
@@ -22,7 +21,7 @@ export const Country = ({ country }) => {
           </div>
         </div>
       </article>
-    </Link>
+    </StyledCountry>
   );
 };
 

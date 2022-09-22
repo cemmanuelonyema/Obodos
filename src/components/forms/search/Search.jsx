@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { FaTimes } from 'react-icons/fa';
 import './search.css';
@@ -19,11 +19,10 @@ export const Search = () => {
     setSearchQuery('');
     dispatch(clearFiltered());
   };
-  const handleChange = (e) => {
-    setSearchQuery(e.target.value);
-    console.log(searchQuery);
+
+  useEffect(() => {
     dispatch(filterCountries(searchQuery));
-  };
+  }, [searchQuery]);
 
   return (
     <form onSubmit={(e) => e.preventDefault()} className="form search__form">
@@ -32,7 +31,7 @@ export const Search = () => {
         type="text"
         placeholder="Search for a country..."
         value={searchQuery}
-        onChange={handleChange}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
       {searchQuery !== '' ? <FaTimes onClick={handleClear} /> : ''}
     </form>

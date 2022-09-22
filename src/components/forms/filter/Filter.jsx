@@ -1,5 +1,6 @@
-import React from "react";
-import "./filter.css";
+import React from 'react';
+import { FiChevronDown } from 'react-icons/fi';
+import './filter.css';
 
 export const Filter = () => {
   const handleChange = (e) => {
@@ -15,7 +16,7 @@ export const Filter = () => {
         <option value="europe">Europe</option>
         <option value="oceania">Oceania</option>
       </select>
-      <span>icon</span>
+      <FiChevronDown className="icon" />
     </div>
   );
 };

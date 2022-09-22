@@ -1,8 +1,9 @@
-import React, { useState } from "react";
-import "./search.css";
+import React, { useState } from 'react';
+import { FiSearch } from 'react-icons/fi';
+import './search.css';
 
 export const Search = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleChange = (e) => {
     setSearchQuery(e.target.value);
@@ -15,7 +16,7 @@ export const Search = () => {
 
   return (
     <form onSubmit={handleSubmit} className="form search__form">
-      <span>icon</span>
+      <FiSearch className="icon" />
       <input
         type="text"
         placeholder="Search for a country..."

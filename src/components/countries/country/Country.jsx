@@ -4,13 +4,13 @@ import './country.css';
 
 export const Country = ({ country }) => {
   return (
-    <Link to={`/${country?.name.common}`}>
+    <Link to={`details/${country?.name.common}`}>
       <article className="country">
         <div className="country__img">
-          <img src={country?.flags.svg} alt="country image" />
+          <img src={country?.flags?.svg} alt="country image" />
         </div>
         <div className="country__data">
-          <h2 className="country__name">{country?.name.common}</h2>
+          <h2 className="country__name">{country?.name?.common}</h2>
           <div className="country__data_row">
             <span>Population:</span> <span>{country?.population}</span>
           </div>

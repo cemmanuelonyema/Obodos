@@ -1,30 +1,30 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import {
   getCountry,
   selectCountries,
 } from '../../../redux/slices/countriesSlice';
 
 export const CountryDetail = () => {
-  // const {country} = useSelector(selectCountries)
+  const { country } = useSelector(selectCountries);
+  const dispatch = useDispatch();
 
-  const [country, setCountry] = useState([]);
+  //   const [country, setCountry] = useState([]);
   const { name } = useParams();
 
   useEffect(() => {
-    const getCountry = async () => {
-      const res = await axios.get(
-        `https://restcountries.com/v3.1/name/${name}?fullText=true`
-      );
-      const [data] = res.data;
-      console.log(data);
-      setCountry(data);
-    };
-    getCountry();
-    // useDispatch(getCountry(name))
+    // const getCountry = async () => {
+    //   const res = await axios.get(
+    //     `https://restcountries.com/v3.1/name/${name}?fullText=true`
+    //   );
+    //   const [data] = res.data;
+    //   console.log(data);
+    //   setCountry(data);
+    // };
+    // getCountry();
+    dispatch(getCountry(name));
   }, [name]);
 
   return (

@@ -3,7 +3,7 @@ import axios from 'axios';
 
 //axios config
 const baseURL = 'https://restcountries.com/v3.1';
-axios.create({
+export const countryApi = axios.create({
   baseURL,
 });
 
@@ -12,12 +12,12 @@ export const getCountries = createAsyncThunk(
   'countries/getCountries',
   async () => {
     try {
-      const res = await axios.get('/all');
-      console.log(res.data);
+      const res = await countryApi.get('/all');
+      console.log(res);
       return res.data;
     } catch (err) {
-      console.log(err);
-      return err;
+      console.log(err.message);
+      return err.message;
     }
   }
 );
@@ -26,13 +26,13 @@ export const getCountry = createAsyncThunk(
   'countries/getCountry',
   async (name) => {
     try {
-      const res = await axios.get(`/name/${name}?fullText=true`);
+      const res = await countryApi.get(`/name/${name}?fullText=true`);
       console.log(res.data);
       const { data } = res.data; // destructure data off the arr of res
       return data;
     } catch (err) {
-      console.log(err);
-      return err;
+      console.log(err.message);
+      return err.message();
     }
   }
 );
@@ -63,25 +63,25 @@ export const countriesSlice = createSlice({
       .addCase(getCountries.pending, (state) => {
         state.status = 'loading';
       })
+      .addCase(getCountries.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.err.message;
+      })
       .addCase(getCountries.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.countries = action.payload;
-      })
-      .addCase(getCountries.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload.message;
       })
       //getCountry
       .addCase(getCountry.pending, (state) => {
         state.status = 'loading';
       })
+      .addCase(getCountry.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.err.message;
+      })
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.country = action.payload;
-      })
-      .addCase(getCountry.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload.message;
       });
   },
 });

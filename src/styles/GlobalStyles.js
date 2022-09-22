@@ -2,8 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyles = createGlobalStyle`
 
-@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;800&display=swap');
-
 :root {
   /* color - dark mode*/
   --dark-blue: hsl(209, 23%, 22%);
@@ -14,6 +12,7 @@ export const GlobalStyles = createGlobalStyle`
   --dark-gray: hsl(0, 0%, 52%); /* input */
   --very-light-gray: hsl(0, 0%, 98%); /* Background */
 
+ 
   /* neutral */
   --white: hsl(0, 0%, 100%);
   --black: hsl(0, 0%, 0%);

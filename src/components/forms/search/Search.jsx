@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { FaTimes } from 'react-icons/fa';
-import './search.css';
+import { StyledSearch } from './StyledSearch.js';
 import { useDispatch } from 'react-redux';
 import {
   filterCountries,
@@ -20,12 +20,13 @@ export const Search = () => {
     dispatch(clearFiltered());
   };
 
+  //useEffect
   useEffect(() => {
     dispatch(filterCountries(searchQuery));
   }, [searchQuery]);
 
   return (
-    <form onSubmit={(e) => e.preventDefault()} className="form search__form">
+    <StyledSearch onSubmit={(e) => e.preventDefault()}>
       <FiSearch className="icon" />
       <input
         type="text"
@@ -34,6 +35,6 @@ export const Search = () => {
         onChange={(e) => setSearchQuery(e.target.value)}
       />
       {searchQuery !== '' ? <FaTimes onClick={handleClear} /> : ''}
-    </form>
+    </StyledSearch>
   );
 };

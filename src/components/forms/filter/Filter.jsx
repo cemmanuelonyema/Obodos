@@ -2,16 +2,14 @@ import React from 'react';
 import { FiChevronDown } from 'react-icons/fi';
 import { useDispatch } from 'react-redux';
 import { filterCountries } from '../../../redux/slices/countriesSlice';
-import './filter.css';
+import { StyledFilter } from './StyledFilter';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const handleChange = (e) => {
-    console.log(e.target.value);
-    dispatch(filterCountries(e.target.value));
-  };
+  const handleChange = (e) => dispatch(filterCountries(e.target.value));
+
   return (
-    <div className="select">
+    <StyledFilter className="select">
       <select name="label" onChange={handleChange}>
         <option>Filter by Region</option>
         <option value="africa">Africa</option>
@@ -21,8 +19,6 @@ export const Filter = () => {
         <option value="oceania">Oceania</option>
       </select>
       <FiChevronDown className="icon" />
-    </div>
+    </StyledFilter>
   );
 };
-
-// https://restcountries.com/v3.1/all

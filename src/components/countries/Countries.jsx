@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import './countries.css';
 import { Country } from './country/Country';
+import { StyledCountries } from './StyledCountries.js';
 import { selectCountries } from '../../redux/slices/countriesSlice';
 
 export const Countries = () => {
@@ -20,8 +20,10 @@ export const Countries = () => {
   }, []);
 
   const renderCountries = filtered !== null ? filtered : countries;
+
   return (
-    <section className="countries" id="section-countries">
+    <StyledCountries>
+      {' '}
       <div className="container countries__container">
         {renderCountries?.map((country) => (
           <Country key={country.name.common} country={country} />
@@ -43,6 +45,6 @@ export const Countries = () => {
         <Country />
         <Country /> */}
       </div>
-    </section>
+    </StyledCountries>
   );
 };

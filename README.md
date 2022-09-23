@@ -40,7 +40,7 @@ Users should be able to:
 ### Links
 
 - [Github URL](https://github.com/cemmanuelonyema/Obodos)
-- [Live Site URL](obodos.netlify.app/)
+- [Live Site URL](https://obodos.netlify.app/)
 
 ## My process
 

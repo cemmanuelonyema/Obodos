@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux';
 import {
   filterCountries,
   clearFiltered,
+  getCountry,
 } from '../../../redux/slices/countriesSlice';
 
 export const Search = () => {
@@ -22,7 +23,14 @@ export const Search = () => {
 
   //useEffect
   useEffect(() => {
-    dispatch(filterCountries(searchQuery));
+    const timeoutId = setTimeout(() => {
+      if (searchQuery) dispatch(getCountry(searchQuery));
+    }, 1000);
+
+    //clean up - runs on every rerender
+    return () => {
+      clearTimeout(timeoutId);
+    };
   }, [searchQuery]);
 
   return (

@@ -14,28 +14,28 @@ export const countryApi = axios.create({
 //Async Thunks
 export const getCountries = createAsyncThunk(
   'countries/getCountries',
-  async () => {
+  async ({ rejectWithValue }) => {
     try {
       const res = await countryApi.get('/all');
       console.log(res);
       return res.data;
     } catch (err) {
       console.log(err.message);
-      return err.message;
+      return rejectWithValue(err.message);
     }
   }
 );
 
 export const getCountry = createAsyncThunk(
   'countries/getCountry',
-  async (name) => {
+  async (name, { rejectWithValue }) => {
     try {
       const res = await countryApi.get(`/name/${name}?fullText=true`);
       const [data] = res.data; // destructure data off the arr of res
       return data;
     } catch (err) {
       console.log(err.message);
-      return err.message();
+      return rejectWithValue(err.message());
     }
   }
 );
@@ -85,6 +85,7 @@ export const countriesSlice = createSlice({
         const region = country.region.match(regex);
         return name || region;
       });
+      //   state.filtered = selectFiltered(action.payload);
     },
     clearFiltered(state) {
       state.filtered = [];
@@ -98,13 +99,13 @@ export const countriesSlice = createSlice({
       })
       .addCase(getCountries.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.err.message;
+        state.error = action.payload;
+        console.log(action.payload);
       })
       .addCase(getCountries.fulfilled, (state, action) => {
         // console.log(action.payload);
         state.status = 'succeeded';
         state.countries = action.payload;
-        console.log(state.countries);
       })
       //getCountry
       .addCase(getCountry.pending, (state) => {
@@ -112,7 +113,8 @@ export const countriesSlice = createSlice({
       })
       .addCase(getCountry.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.err.message;
+        state.error = action.payload.message;
+        console.log(action.payload.message);
       })
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = 'succeeded';
@@ -128,3 +130,16 @@ export default countriesSlice.reducer;
 
 //Selectors
 export const selectCountries = (state) => state.countriesSlice;
+
+// export const selectFiltered = createSelector(
+//   [selectCountries],
+//   (countries, payload) => {
+//     countries.filter((country) => {
+//       console.log('payload:', payload);
+//       const regex = new RegExp(`${payload}`, 'gi');
+//       const name = country.name.common.match(regex);
+//       const region = country.region.match(regex);
+//       return name || region;
+//     });
+//   }
+// );

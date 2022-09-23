@@ -15,10 +15,10 @@ export const Countries = () => {
   //useEffect
   useEffect(() => {
     //Async Action
-    // dispatch(getCountries());
+    dispatch(getCountries());
   }, []);
 
-  const renderCountries = filtered.length > 1 ? filtered : countries;
+  const renderCountries = filtered.length ? filtered : countries;
 
   return (
     <StyledCountries>

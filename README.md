@@ -63,7 +63,18 @@ Use this section to recap over some of your major learnings while working throug
 1-- Async thunk action creator
 2-- writing memo selectors
 3-- Regex search and filter
-4-- throttling and debounce func
+4-- throttling and debounce func to avoid instantaneous api calls
+useEffect(() => {
+const timeoutId = setTimeout(() => {
+if (searchQuery) dispatch(getCountry(searchQuery));
+}, 1000);
+
+    //clean up - runs on every rerender
+    return () => {
+      clearTimeout(timeoutId);
+    };
+
+}, [searchQuery]);
 
 I faced the useState async update issue, where my searchQuery was always (last) letter short
 const handleChange = (e) => {

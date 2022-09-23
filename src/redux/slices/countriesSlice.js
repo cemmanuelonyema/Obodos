@@ -14,14 +14,14 @@ export const countryApi = axios.create({
 //Async Thunks
 export const getCountries = createAsyncThunk(
   'countries/getCountries',
-  async ({ rejectWithValue }) => {
+  async (thunkApi) => {
     try {
       const res = await countryApi.get('/all');
-      console.log(res);
+      console.log(res.data);
       return res.data;
     } catch (err) {
-      console.log(err.message);
-      return rejectWithValue(err.message);
+      console.log(err);
+      return thunkApi.rejectWithValue(err);
     }
   }
 );
@@ -43,22 +43,22 @@ export const getCountry = createAsyncThunk(
 //State
 const initialState = {
   countries: [
-    {
-      name: {
-        common: 'Peru',
-      },
-      population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
-    },
-    {
-      name: {
-        common: 'USA',
-      },
-      population: 22971846,
-      capital: ['Ama'],
-      region: 'Europe',
-    },
+    // {
+    //   name: {
+    //     common: 'Peru',
+    //   },
+    //   population: 12971846,
+    //   capital: ['Leman'],
+    //   region: 'Americas',
+    // },
+    // {
+    //   name: {
+    //     common: 'USA',
+    //   },
+    //   population: 22971846,
+    //   capital: ['Ama'],
+    //   region: 'Europe',
+    // },
   ],
   country: {},
   status: 'idle', //  || succeeded || pending || failed

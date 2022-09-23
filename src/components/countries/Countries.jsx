@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import './countries.css';
 import { Country } from './country/Country';
+import { StyledCountries } from './StyledCountries.js';
 import {
   getCountries,
   selectCountries,
 } from '../../redux/slices/countriesSlice';
 
 export const Countries = () => {
-  // const {countries} = useSelector(selectCountries)
+  const { countries, filtered } = useSelector(selectCountries);
   const dispatch = useDispatch();
-
-  const [countries, setCountries] = useState([]);
+  //   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     // const getCountries = async () => {
@@ -26,13 +25,18 @@ export const Countries = () => {
     dispatch(getCountries());
   }, []);
 
-  return (
-    <section className="countries" id="section-countries">
-      <div className="container countries__container">
-        {countries?.map((country) => (
-          <Country country={country} />
-        ))}
+  const renderCountries = filtered.length > 1 ? filtered : countries;
+  console.log(renderCountries);
 
+  return (
+    <StyledCountries>
+      {' '}
+      <div className="container countries__container">
+        {renderCountries?.map((country) => (
+          <Country key={country.name.common} country={country} />
+        ))}
+        {/* 
+        <Country />
         <Country />
         <Country />
         <Country />
@@ -49,6 +53,6 @@ export const Countries = () => {
         <Country />
         <Country /> */}
       </div>
-    </section>
+    </StyledCountries>
   );
 };

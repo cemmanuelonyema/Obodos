@@ -59,6 +59,26 @@ Users should be able to:
 
 Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
 
+--- Redux toolkit
+1-- Async thunk action creator
+2-- writing memo selectors
+3-- Regex search and filter
+4-- throttling and debounce func
+
+I faced the useState async update issue, where my searchQuery was always (last) letter short
+const handleChange = (e) => {
+setSearchQuery(e.target.value);
+console.log(searchQuery);
+dispatch(filterCountries(searchQuery));
+};
+
+i solved it with useEffect keeping the searchQuery as a dependency, that way its always updated
+
+useEffect(() => {
+console.log(searchQuery);
+dispatch(filterCountries(searchQuery));
+}, [searchQuery]);
+
 To see how you can add code snippets, see below:
 
 ```html

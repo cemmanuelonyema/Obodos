@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const StyledFilter = styled.div`
   .select {
     padding: 0 1rem;
-    border: 1px solid rgba(1, 8, 22, 0.298);
+    border: 1px solid var(--shadow);
     border-radius: 6px;
     margin: 3rem 0;
 

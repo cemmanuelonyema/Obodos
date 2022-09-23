@@ -16,6 +16,12 @@ export const GlobalStyles = createGlobalStyle`
   /* neutral */
   --white: hsl(0, 0%, 100%);
   --black: hsl(0, 0%, 0%);
+
+  --bg:  ${({ theme }) => theme.bg}; 
+  --text:  ${({ theme }) => theme.text};
+  --element: ${({ theme }) => theme.element};
+  --shadow: ${({ theme }) => theme.shadow};
+  --shadow2: ${({ theme }) => theme.shadow2};
 }
 
 *,
@@ -24,17 +30,29 @@ export const GlobalStyles = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: inherit;
+    color: var(--text);
+      /* transition: all 0.3s ease-in-out; */
+
+     
+
 }
 
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+  
 }
 
 body {
   font-family: 'Nunito Sans', sans-serif;
+   background-color: var(--bg);
+  
+   /* background-color: hsl(207, 33%, 14%); */
+    
+
 
 }
+
 
 a {
   text-decoration: none;

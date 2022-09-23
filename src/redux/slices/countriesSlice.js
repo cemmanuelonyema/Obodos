@@ -1,4 +1,8 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  createAsyncThunk,
+  createSelector,
+} from '@reduxjs/toolkit';
 import axios from 'axios';
 
 //axios config
@@ -78,7 +82,6 @@ export const countriesSlice = createSlice({
         console.log('payload:', action.payload);
         const regex = new RegExp(`${action.payload}`, 'gi');
         const name = country.name.common.match(regex);
-        // const capital = country.capital.match(regex);
         const region = country.region.match(regex);
         return name || region;
       });
@@ -119,7 +122,9 @@ export const countriesSlice = createSlice({
   },
 });
 
-export const selectCountries = (state) => state.countriesSlice;
 export const { setMode, filterCountries, clearFiltered } =
   countriesSlice.actions;
 export default countriesSlice.reducer;
+
+//Selectors
+export const selectCountries = (state) => state.countriesSlice;

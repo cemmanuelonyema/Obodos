@@ -10,7 +10,7 @@ export const StyledSearch = styled.form`
   margin: 3rem 0;
 
   &:focus-within {
-    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+    box-shadow: 0 1px 6px 0 var(--shadow);
   }
 
   input {

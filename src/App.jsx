@@ -10,12 +10,14 @@ import { ThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectCountries } from './redux/slices/countriesSlice.js';
 import { darkTheme, lightTheme } from './styles/Theme.js';
+import { GlobalStyles } from './styles/GlobalStyles.js';
 
 export const App = () => {
   const { darkMode } = useSelector(selectCountries);
 
   return (
     <ThemeProvider theme={darkMode ? lightTheme : darkTheme}>
+      <GlobalStyles />
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />

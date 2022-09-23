@@ -1,16 +1,15 @@
 export const lightTheme = {
-  //   body: '',
-  //   body: 'hsl(0, 0%, 98%)',
-  //   text: '',
-  //   primary: 'hsl(0, 0%, 100%)',
-
-  body: '#fff',
-  text: '#000',
+  element: '#fff',
+  bg: '#fafafa',
+  text: '#202D36',
+  shadow: 'rgba(31, 32, 37, 0.3)',
+  shadow2: ' rgba(0, 0, 0, 0.1)',
 };
 
 export const darkTheme = {
-  //   body: 'hsl(207, 26%, 17%)',
-  //   primary: ' hsl(0, 0%, 0%)',
-  body: '#000',
-  text: '#fff',
+  element: '#2B3743',
+  bg: '#202D36',
+  text: '#EBEFF3',
+  shadow: '#16222bf0',
+  shadow2: ' rgba(0, 0, 0, 0.23)',
 };

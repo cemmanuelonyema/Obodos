@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom';
 
 export const StyledCountry = styled(Link)`
   .country {
-    box-shadow: 0 2rem 5rem 1rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2rem 5rem 1rem var(--shadow2);
     font-size: 1.6rem;
     border-radius: 0.7rem;
+    background-color: var(--element);
+    color: var(--text);
   }
 
   .country__data {

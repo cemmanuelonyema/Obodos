@@ -3,7 +3,7 @@ import { StyledCountry } from './StyledCountry.js';
 
 export const Country = ({ country }) => {
   return (
-    <StyledCountry to={`details/${country?.name.common}`}>
+    <StyledCountry to={`/${country?.name.common}`}>
       <article className="country">
         <div className="country__img">
           <img src={country?.flags?.svg} alt="country image" />

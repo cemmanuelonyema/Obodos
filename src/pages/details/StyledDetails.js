@@ -6,8 +6,8 @@ export const StyledDetails = styled.section`
     margin: 0 auto;
     padding: 3rem;
 
-    button {
-      display: flex;
+    a {
+      display: inline-flex;
       gap: 5px;
       align-items: center;
       padding: 1rem 2rem;

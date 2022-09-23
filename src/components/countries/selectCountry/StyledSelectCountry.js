@@ -10,6 +10,11 @@ export const StyledSelectCountry = styled.article`
     grid-template-columns: repeat(2, 1fr);
     gap: 3rem;
     align-items: center;
+
+    img {
+      width: 100%;
+      height: 100%;
+    }
   }
 
   .details {

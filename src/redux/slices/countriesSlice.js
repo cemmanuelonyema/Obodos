@@ -27,8 +27,7 @@ export const getCountry = createAsyncThunk(
   async (name) => {
     try {
       const res = await countryApi.get(`/name/${name}?fullText=true`);
-      console.log(res.data);
-      const { data } = res.data; // destructure data off the arr of res
+      const [data] = res.data; // destructure data off the arr of res
       return data;
     } catch (err) {
       console.log(err.message);
@@ -40,38 +39,22 @@ export const getCountry = createAsyncThunk(
 //State
 const initialState = {
   countries: [
-    // {
-    //   name: {
-    //     common: 'Peru',
-    //   },
-    //   population: 12971846,
-    //   capital: ['Leman'],
-    //   region: 'Americas',
-    // },
-    // {
-    //   name: {
-    //     common: 'USA',
-    //   },
-    //   population: 22971846,
-    //   capital: ['Ama'],
-    //   region: 'Europe',
-    // },
-    // {
-    //   name: {
-    //     common: 'Span',
-    //   },
-    //   population: 42971846,
-    //   capital: ['Edu'],
-    //   region: 'Americas',
-    // },
-    // {
-    //   name: {
-    //     common: 'Nigeria',
-    //   },
-    //   population: 629718467455,
-    //   capital: ['Abuja'],
-    //   region: 'Africa',
-    // },
+    {
+      name: {
+        common: 'Peru',
+      },
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
+    {
+      name: {
+        common: 'USA',
+      },
+      population: 22971846,
+      capital: ['Ama'],
+      region: 'Europe',
+    },
   ],
   country: {},
   status: 'idle', //  || succeeded || pending || failed
@@ -131,6 +114,7 @@ export const countriesSlice = createSlice({
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.country = action.payload;
+        console.log(state.country);
       });
   },
 });

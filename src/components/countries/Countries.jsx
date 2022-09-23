@@ -8,12 +8,14 @@ import {
 } from '../../redux/slices/countriesSlice';
 
 export const Countries = () => {
+  //hooks
   const { countries, filtered } = useSelector(selectCountries);
   const dispatch = useDispatch();
 
+  //useEffect
   useEffect(() => {
-    //thunk
-    dispatch(getCountries());
+    //Async Action
+    // dispatch(getCountries());
   }, []);
 
   const renderCountries = filtered.length > 1 ? filtered : countries;

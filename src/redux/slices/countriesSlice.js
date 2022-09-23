@@ -95,13 +95,13 @@ export const countriesSlice = createSlice({
         console.log('payload:', action.payload);
         const regex = new RegExp(`${action.payload}`, 'gi');
         const name = country.name.common.match(regex);
-        const capital = country.capital[0].match(regex);
+        // const capital = country.capital.match(regex);
         const region = country.region.match(regex);
-        return name || capital || region;
+        return name || region;
       });
     },
     clearFiltered(state) {
-      state.filtered = null;
+      state.filtered = [];
     },
   },
   extraReducers(builder) {

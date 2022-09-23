@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Country } from './country/Country';
 import { StyledCountries } from './StyledCountries.js';
+import { selectCountries } from '../../redux/slices/countriesSlice';
 
 export const Countries = () => {
-  // const {countries} = useSelector(selectCountries)
+  const { countries, filtered } = useSelector(selectCountries);
 
-  const [countries, setCountries] = useState([]);
+  //   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     const getCountries = async () => {
@@ -18,15 +19,18 @@ export const Countries = () => {
     getCountries();
   }, []);
 
+  const renderCountries = filtered !== null ? filtered : countries;
+
   return (
     <StyledCountries>
       {' '}
       <div className="container countries__container">
-        {countries?.map((country) => (
-          <Country country={country} />
+        {renderCountries?.map((country) => (
+          <Country key={country.name.common} country={country} />
         ))}
 
-        {/* <Country />
+        {/* 
+        <Country />
         <Country />
         <Country />
         <Country />

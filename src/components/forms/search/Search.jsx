@@ -1,29 +1,40 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
+import { FaTimes } from 'react-icons/fa';
 import { StyledSearch } from './StyledSearch.js';
+import { useDispatch } from 'react-redux';
+import {
+  filterCountries,
+  clearFiltered,
+} from '../../../redux/slices/countriesSlice';
 
 export const Search = () => {
+  //hooks
+  const dispatch = useDispatch();
+  //local state
   const [searchQuery, setSearchQuery] = useState('');
 
-  const handleChange = (e) => {
-    setSearchQuery(e.target.value);
-    console.log(searchQuery);
+  //Methods
+  const handleClear = () => {
+    setSearchQuery('');
+    dispatch(clearFiltered());
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
+  //useEffect
+  useEffect(() => {
+    dispatch(filterCountries(searchQuery));
+  }, [searchQuery]);
 
   return (
-    <StyledSearch onSubmit={handleSubmit} className="form search__form">
-      {' '}
+    <StyledSearch onSubmit={(e) => e.preventDefault()}>
       <FiSearch className="icon" />
       <input
         type="text"
         placeholder="Search for a country..."
         value={searchQuery}
-        onChange={handleChange}
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
+      {searchQuery !== '' ? <FaTimes onClick={handleClear} /> : ''}
     </StyledSearch>
   );
 };

@@ -39,10 +39,44 @@ export const getCountry = createAsyncThunk(
 
 //State
 const initialState = {
-  countries: [],
+  countries: [
+    {
+      name: {
+        common: 'Peru',
+      },
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
+    {
+      name: {
+        common: 'USA',
+      },
+      population: 22971846,
+      capital: ['Ama'],
+      region: 'Europe',
+    },
+    {
+      name: {
+        common: 'Span',
+      },
+      population: 42971846,
+      capital: ['Edu'],
+      region: 'Americas',
+    },
+    {
+      name: {
+        common: 'Nigeria',
+      },
+      population: 629718467455,
+      capital: ['Abuja'],
+      region: 'Africa',
+    },
+  ],
   country: {},
   status: 'idle', //  || succeeded || pending || failed
   darkMode: false,
+  filtered: null,
   error: null,
 };
 
@@ -55,6 +89,19 @@ export const countriesSlice = createSlice({
   reducers: {
     setMode(state) {
       state.darkMode = !state.darkMode;
+    },
+    filterCountries(state, action) {
+      state.filtered = state.countries.filter((country) => {
+        console.log('payload:', action.payload);
+        const regex = new RegExp(`${action.payload}`, 'gi');
+        const name = country.name.common.match(regex);
+        const capital = country.capital[0].match(regex);
+        const region = country.region.match(regex);
+        return name || capital || region;
+      });
+    },
+    clearFiltered(state) {
+      state.filtered = null;
     },
   },
   extraReducers(builder) {
@@ -87,5 +134,6 @@ export const countriesSlice = createSlice({
 });
 
 export const selectCountries = (state) => state.countriesSlice;
-export const { setMode, getCountries1, getCountry1 } = countriesSlice.actions;
+export const { setMode, filterCountries, clearFiltered } =
+  countriesSlice.actions;
 export default countriesSlice.reducer;

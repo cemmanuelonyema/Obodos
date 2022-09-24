@@ -28,4 +28,9 @@ export const StyledSearch = styled.form`
   input:focus {
     outline: none;
   }
+
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    margin: 1rem 0;
+  }
 `;

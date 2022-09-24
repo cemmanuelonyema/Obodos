@@ -43,22 +43,22 @@ export const getCountry = createAsyncThunk(
 //State
 const initialState = {
   countries: [
-    // {
-    //   name: {
-    //     common: 'Peru',
-    //   },
-    //   population: 12971846,
-    //   capital: ['Leman'],
-    //   region: 'Americas',
-    // },
-    // {
-    //   name: {
-    //     common: 'USA',
-    //   },
-    //   population: 22971846,
-    //   capital: ['Ama'],
-    //   region: 'Europe',
-    // },
+    {
+      name: {
+        common: 'Peru',
+      },
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
+    {
+      name: {
+        common: 'USA',
+      },
+      population: 22971846,
+      capital: ['Ama'],
+      region: 'Europe',
+    },
   ],
   country: {},
   status: 'idle', //  || succeeded || pending || failed
@@ -76,6 +76,8 @@ export const countriesSlice = createSlice({
   reducers: {
     setMode(state) {
       state.darkMode = !state.darkMode;
+      const theme = state.darkMode ? 'dark ' : 'light';
+      localStorage.setItem('theme', theme);
     },
     filterCountries(state, action) {
       state.filtered = state.countries.filter((country) => {

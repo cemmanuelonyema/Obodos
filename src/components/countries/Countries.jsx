@@ -18,7 +18,7 @@ export const Countries = () => {
     dispatch(getCountries());
   }, []);
 
-  const renderCountries = filtered.length ? filtered : countries;
+  const renderCountries = filtered.length > 1 ? filtered : countries;
 
   return (
     <StyledCountries>

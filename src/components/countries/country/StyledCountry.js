@@ -12,6 +12,21 @@ export const StyledCountry = styled(Link)`
 
   .country__data {
     padding: 2rem;
+
+    h2 {
+      margin-bottom: 2rem;
+    }
+    &_row {
+      margin: 5px 0;
+    }
+    &_name {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    &_item {
+      color: var(--neutralText);
+    }
   }
   .country__img {
     height: 15rem;

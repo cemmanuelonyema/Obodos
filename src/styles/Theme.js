@@ -4,6 +4,7 @@ export const lightTheme = {
   text: '#202D36',
   shadow: 'rgba(31, 32, 37, 0.3)',
   shadow2: ' rgba(0, 0, 0, 0.1)',
+  neutralText: '#727272',
 };
 
 export const darkTheme = {
@@ -12,4 +13,5 @@ export const darkTheme = {
   text: '#EBEFF3',
   shadow: '#16222bf0',
   shadow2: ' rgba(0, 0, 0, 0.23)',
+  neutralText: '#c3c3c3',
 };

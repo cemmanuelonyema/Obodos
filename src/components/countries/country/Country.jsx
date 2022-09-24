@@ -11,13 +11,16 @@ export const Country = ({ country }) => {
         <div className="country__data">
           <h2 className="country__name">{country?.name?.common}</h2>
           <div className="country__data_row">
-            <span>Population:</span> <span>{country?.population}</span>
+            <span className="country__data_name">Population:</span>
+            <span className="country__data_item"> {country?.population}</span>
           </div>
           <div className="country__data_row">
-            <span>Region:</span> <span>{country?.region}</span>
+            <span className="country__data_name">Region:</span>{' '}
+            <span className="country__data_item">{country?.region}</span>
           </div>
           <div className="country__data_row">
-            <span>Capital:</span> <span>{country?.capital}</span>
+            <span className="country__data_name">Capital:</span>{' '}
+            <span className="country__data_item">{country?.capital}</span>
           </div>
         </div>
       </article>

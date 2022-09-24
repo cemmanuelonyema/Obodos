@@ -22,6 +22,7 @@ export const GlobalStyles = createGlobalStyle`
   --element: ${({ theme }) => theme.element};
   --shadow: ${({ theme }) => theme.shadow};
   --shadow2: ${({ theme }) => theme.shadow2};
+  --neutralText:  ${({ theme }) => theme.neutralText};
 }
 
 *,
@@ -31,7 +32,7 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   box-sizing: inherit;
     color: var(--text);
-      /* transition: all 0.3s ease-in-out; */
+      /* transition: all 0.5s ease-in-out; */
 
      
 
@@ -40,23 +41,23 @@ export const GlobalStyles = createGlobalStyle`
 html {
   font-size: 62.5%;
   box-sizing: border-box;
+
+   @media screen and (max-width: 600px) {
+     font-size: 54%;
+    }
   
 }
 
 body {
   font-family: 'Nunito Sans', sans-serif;
    background-color: var(--bg);
-  
-   /* background-color: hsl(207, 33%, 14%); */
-    
-
-
+   font-size: 1.4rem;
 }
 
 
 a {
   text-decoration: none;
-  color: black;
+  color: var(--text);
 }
 
 button {
@@ -66,4 +67,9 @@ button {
 }
 
 
+
+
+  @media screen and  (max-width: 600px) {
+   
+    }
 `;

@@ -9,7 +9,7 @@ export const Filter = () => {
   const handleChange = (e) => dispatch(filterCountries(e.target.value));
 
   return (
-    <StyledFilter className="select">
+    <StyledFilter>
       <select name="label" onChange={handleChange}>
         <option>Filter by Region</option>
         <option value="africa">Africa</option>

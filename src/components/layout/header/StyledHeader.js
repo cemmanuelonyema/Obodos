@@ -12,6 +12,12 @@ export const StyledHeader = styled.header`
     align-items: center;
     justify-content: space-between;
     padding: 0 3rem;
+
+    h1 {
+      @media screen and (max-width: 600px) {
+        /* font-size: 1.5rem; */
+      }
+    }
   }
 
   .header__btn {

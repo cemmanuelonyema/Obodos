@@ -9,5 +9,10 @@ export const StyledForms = styled.section`
     display: flex;
     align-items: center;
     justify-content: space-between;
+
+    @media screen and (max-width: 600px) {
+      flex-direction: column;
+      padding: 2rem 3rem;
+    }
   }
 `;

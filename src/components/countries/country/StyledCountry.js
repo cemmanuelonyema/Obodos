@@ -16,9 +16,11 @@ export const StyledCountry = styled(Link)`
     h2 {
       margin-bottom: 2rem;
     }
+
     &_row {
       margin: 5px 0;
     }
+
     &_name {
       font-weight: bold;
       margin-right: 5px;
@@ -28,13 +30,8 @@ export const StyledCountry = styled(Link)`
       color: var(--neutralText);
     }
   }
+
   .country__img {
     height: 15rem;
-  }
-
-  .country__img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
   }
 `;

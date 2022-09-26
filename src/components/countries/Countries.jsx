@@ -9,8 +9,10 @@ import {
 
 export const Countries = () => {
   //hooks
-  const { countries, filtered } = useSelector(selectCountries);
+  const { countries, filtered, status } = useSelector(selectCountries);
   const dispatch = useDispatch();
+
+  const renderCountries = filtered.length > 1 ? filtered : countries;
 
   //useEffect
   useEffect(() => {
@@ -18,11 +20,37 @@ export const Countries = () => {
     dispatch(getCountries());
   }, []);
 
-  const renderCountries = filtered.length > 1 ? filtered : countries;
+  const render = () => {
+    if (status === 'loading' || 'idle') {
+      return (
+        <div className="container">
+          <h2>Loading ......</h2>
+        </div>
+      );
+    }
+
+    if (status === 'succeeded' && filtered.length < 1) {
+      return (
+        <div className="container">
+          <h2>No country matched</h2>
+        </div>
+      );
+    }
+
+    if (status === 'succeeded') {
+      const renderCountries = filtered.length > 1 ? filtered : countries;
+      return (
+        <div className="container countries__container">
+          {renderCountries?.map((country) => (
+            <Country key={country.name.common} country={country} />
+          ))}
+        </div>
+      );
+    }
+  };
 
   return (
     <StyledCountries>
-      {' '}
       <div className="container countries__container">
         {renderCountries?.map((country) => (
           <Country key={country.name.common} country={country} />

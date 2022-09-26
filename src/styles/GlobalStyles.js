@@ -3,17 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyles = createGlobalStyle`
 
 :root {
-  /* color - dark mode*/
-  --dark-blue: hsl(209, 23%, 22%);
-  --very-dark-blue: hsl(207, 26%, 17%); /* Background */
-
-  /* color - light mode */
-  --very-dark-blue: hsl(200, 15%, 8%); /* Text */
-  --dark-gray: hsl(0, 0%, 52%); /* input */
-  --very-light-gray: hsl(0, 0%, 98%); /* Background */
-
- 
-  /* neutral */
+    /* neutral */
   --white: hsl(0, 0%, 100%);
   --black: hsl(0, 0%, 0%);
 
@@ -31,19 +21,16 @@ export const GlobalStyles = createGlobalStyle`
   margin: 0;
   padding: 0;
   box-sizing: inherit;
-    color: var(--text);
-      /* transition: all 0.5s ease-in-out; */
-
-     
-
+  color: var(--text);
+  transition: all 0.5s ease-in-out;
 }
 
 html {
   font-size: 62.5%;
   box-sizing: border-box;
 
-   @media screen and (max-width: 600px) {
-     font-size: 54%;
+   @media screen and (max-width: 37.5em) {
+     font-size: 58%;
     }
   
 }
@@ -51,25 +38,41 @@ html {
 body {
   font-family: 'Nunito Sans', sans-serif;
    background-color: var(--bg);
-   font-size: 1.4rem;
+   font-size: 1.4rem;   
 }
 
+.container{
+    max-width: 120rem;
+    margin: 0 auto;
+     padding: 3rem;
+
+}
 
 a {
   text-decoration: none;
   color: var(--text);
 }
 
-button {
-  background-color: transparent;
-  border: none;
-  outline: none;
+img{
+	width: 100%;
+	height: 100%;
+	  object-fit: cover;
 }
 
+button{
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
 
+.btn {
+  padding: 1rem 2rem;
+  box-shadow: 0 1px 6px 0 var(--shadow);
+  background-color: var(--element);
+  font-size: inherit;
 
-
-  @media screen and  (max-width: 600px) {
-   
-    }
+  &:focus{
+    box-shadow: 0 1px 6px 0 var(--shadow);
+  }
+}
 `;

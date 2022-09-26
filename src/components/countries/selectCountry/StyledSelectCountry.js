@@ -2,7 +2,6 @@ import styled from 'styled-components';
 
 export const StyledSelectCountry = styled.article`
   font-size: 1.8rem;
-  border: 1px solid black;
   padding: 2rem 0;
 
   .selectCountry__container {
@@ -11,13 +10,8 @@ export const StyledSelectCountry = styled.article`
     gap: 3rem;
     align-items: center;
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 37.5em) {
       grid-template-columns: 1fr;
-    }
-
-    img {
-      width: 100%;
-      height: 100%;
     }
   }
 
@@ -36,7 +30,7 @@ export const StyledSelectCountry = styled.article`
     justify-content: space-between;
     gap: 3rem;
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 37.5em) {
       flex-direction: column;
     }
 
@@ -58,23 +52,19 @@ export const StyledSelectCountry = styled.article`
     }
   }
 
-  .borders {
+  .border {
     display: flex;
     align-items: center;
 
-    @media screen and (max-width: 600px) {
+    @media screen and (max-width: 37.5em) {
       flex-direction: column;
       align-items: stretch;
     }
 
-    .border {
-      &-box {
-      }
-    }
-
-    span {
+    &-box {
       display: block;
-      margin: 1rem;
+      padding: 1rem;
+      background-color: var(--element);
     }
   }
 `;

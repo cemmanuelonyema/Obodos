@@ -6,7 +6,11 @@ import { useParams } from 'react-router-dom';
 import { StyledDetails } from './StyledDetails';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { SelectCountry } from '../../components/countries/selectCountry/SelectCountry';
-import { getCountry, selectCountries } from '../../redux/slices/countriesSlice';
+import {
+  getBorCountry,
+  getCountry,
+  selectCountries,
+} from '../../redux/slices/countriesSlice';
 
 export const Details = () => {
   const { country } = useSelector(selectCountries);
@@ -14,13 +18,17 @@ export const Details = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getCountry(name));
+    if (name.length > 3) {
+      dispatch(getCountry(name));
+    } else {
+      dispatch(getBorCountry(name));
+    }
   }, [name]);
 
   return (
     <StyledDetails>
       <div className="container details__container">
-        <Link to="/">
+        <Link to="/" className="btn">
           <FaArrowAltCircleLeft />
           Back
         </Link>

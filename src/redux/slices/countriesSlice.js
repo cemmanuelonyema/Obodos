@@ -39,6 +39,34 @@ export const getCountry = createAsyncThunk(
     }
   }
 );
+export const filterCountry = createAsyncThunk(
+  'countries/filterCountry',
+  async (name, { rejectWithValue }) => {
+    try {
+      const res = await countryApi.get(`/name/${name}`);
+      //   const [data] = res.data; // destructure data off the arr of res
+      return res.data;
+    } catch (err) {
+      console.log(err.message);
+      return rejectWithValue(err.message());
+    }
+  }
+);
+
+export const getBorCountry = createAsyncThunk(
+  'countries/getBorCountry',
+  async (code, { rejectWithValue }) => {
+    try {
+      const res = await countryApi.get(`alpha/${code}`);
+      console.log(res);
+      const [data] = res.data; // destructure data off the arr of res
+      return data;
+    } catch (err) {
+      console.log(err.message);
+      return rejectWithValue(err.message());
+    }
+  }
+);
 
 //State
 const initialState = {
@@ -121,6 +149,34 @@ export const countriesSlice = createSlice({
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.country = action.payload;
+        console.log(state.country);
+      })
+      //getBorCountry
+      .addCase(getBorCountry.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getBorCountry.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload.message;
+        console.log(action.payload.message);
+      })
+      .addCase(getBorCountry.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.country = action.payload;
+        console.log(state.country);
+      })
+      //filterCountry
+      .addCase(filterCountry.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(filterCountry.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload.message;
+        console.log(action.payload.message);
+      })
+      .addCase(filterCountry.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.filtered = action.payload;
         console.log(state.country);
       });
   },

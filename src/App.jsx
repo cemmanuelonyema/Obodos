@@ -34,7 +34,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path=":name" element={<Details />} />
+          <Route path="countries/:name" element={<Details />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

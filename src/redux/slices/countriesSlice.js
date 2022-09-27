@@ -6,7 +6,7 @@ import {
 import axios from 'axios';
 
 //axios config
-const baseURL = 'https://restcountries.com/v3.1';
+const baseURL = 'https://restcountries.com/v2';
 export const countryApi = axios.create({
   baseURL,
 });

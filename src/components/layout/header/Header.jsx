@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { FiSun, FiMoon } from 'react-icons/fi';
+import { FaSun, FaMoon } from 'react-icons/fa';
 import { setMode, selectCountries } from '../../../redux/slices/countriesSlice';
 import { StyledHeader } from './StyledHeader';
 
@@ -16,12 +16,12 @@ export const Header = () => {
           {darkMode ? (
             <span>
               {' '}
-              <FiSun className="icon" /> Light Mode
+              <FaSun className="icon" /> Light Mode
             </span>
           ) : (
             <span>
               {' '}
-              <FiMoon className="icon" /> Dark Mode
+              <FaMoon className="icon" /> Dark Mode
             </span>
           )}
         </button>

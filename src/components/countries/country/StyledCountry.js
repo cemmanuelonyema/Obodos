@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledCountry = styled(Link)`
+  /* width: auto;
+
+  min-width: 22rem; */
+  /* max-width: 37rem; */
+  /* width: 100%; */
+
   .country {
     box-shadow: 0 2rem 5rem 1rem var(--shadow2);
     font-size: 1.6rem;
@@ -12,14 +18,26 @@ export const StyledCountry = styled(Link)`
 
   .country__data {
     padding: 2rem;
-  }
-  .country__img {
-    height: 15rem;
+
+    h2 {
+      margin-bottom: 2rem;
+    }
+
+    &_row {
+      margin: 5px 0;
+    }
+
+    &_name {
+      font-weight: bold;
+      margin-right: 5px;
+    }
+
+    &_item {
+      color: var(--neutralText);
+    }
   }
 
-  .country__img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .country__img {
+    height: 15rem;
   }
 `;

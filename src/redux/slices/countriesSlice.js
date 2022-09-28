@@ -6,7 +6,8 @@ import {
 import axios from 'axios';
 
 //axios config
-const baseURL = 'https://restcountries.com/v3.1';
+const baseURL = 'https://restcountries.com/v2';
+// const baseURL = 'https://restcountries.com/v3.1';
 export const countryApi = axios.create({
   baseURL,
 });
@@ -39,31 +40,68 @@ export const getCountry = createAsyncThunk(
     }
   }
 );
+export const filterCountry = createAsyncThunk(
+  'countries/filterCountry',
+  async (name, { rejectWithValue }) => {
+    try {
+      const res = await countryApi.get(`/name/${name}`);
+      //   const [data] = res.data; // destructure data off the arr of res
+      return res.data;
+    } catch (err) {
+      console.log(err.message);
+      return rejectWithValue(err.message());
+    }
+  }
+);
+
+export const getBorCountry = createAsyncThunk(
+  'countries/getBorCountry',
+  async (code, { rejectWithValue }) => {
+    try {
+      const res = await countryApi.get(`alpha/${code}`);
+      console.log(res);
+      const [data] = res.data; // destructure data off the arr of res
+      return data;
+    } catch (err) {
+      console.log(err.message);
+      return rejectWithValue(err.message());
+    }
+  }
+);
 
 //State
 const initialState = {
   countries: [
-    // {
-    //   name: {
-    //     common: 'Peru',
-    //   },
-    //   population: 12971846,
-    //   capital: ['Leman'],
-    //   region: 'Americas',
-    // },
-    // {
-    //   name: {
-    //     common: 'USA',
-    //   },
-    //   population: 22971846,
-    //   capital: ['Ama'],
-    //   region: 'Europe',
-    // },
+    {
+      name: 'Peru',
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
+    {
+      name: 'Peru',
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
+    {
+      name: 'Peru',
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
+    {
+      name: 'Peru',
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
   ],
   country: {},
   status: 'idle', //  || succeeded || pending || failed
   darkMode: false,
-  filtered: [],
+  //   filtered: null,
+  filtered: null,
   error: null,
 };
 
@@ -76,6 +114,8 @@ export const countriesSlice = createSlice({
   reducers: {
     setMode(state) {
       state.darkMode = !state.darkMode;
+      const theme = state.darkMode ? 'dark ' : 'light';
+      localStorage.setItem('theme', theme);
     },
     filterCountries(state, action) {
       state.filtered = state.countries.filter((country) => {
@@ -88,7 +128,7 @@ export const countriesSlice = createSlice({
       //   state.filtered = selectFiltered(action.payload);
     },
     clearFiltered(state) {
-      state.filtered = [];
+      state.filtered = null;
     },
   },
   extraReducers(builder) {
@@ -113,12 +153,40 @@ export const countriesSlice = createSlice({
       })
       .addCase(getCountry.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload.message;
-        console.log(action.payload.message);
+        state.error = action.payload;
+        console.log(action.payload);
       })
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.country = action.payload;
+        console.log(state.country);
+      })
+      //getBorCountry
+      .addCase(getBorCountry.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(getBorCountry.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload.message;
+        console.log(action.payload.message);
+      })
+      .addCase(getBorCountry.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.country = action.payload;
+        console.log(state.country);
+      })
+      //filterCountry
+      .addCase(filterCountry.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(filterCountry.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload.message;
+        console.log(action.payload.message);
+      })
+      .addCase(filterCountry.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.filtered = action.payload;
         console.log(state.country);
       });
   },

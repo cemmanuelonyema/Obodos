@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Country } from './country/Country';
 import { StyledCountries } from './StyledCountries.js';
@@ -18,15 +18,18 @@ export const Countries = () => {
     dispatch(getCountries());
   }, []);
 
-  const renderCountries = filtered.length ? filtered : countries;
+  const renderCountries = filtered ? filtered : countries;
 
   return (
     <StyledCountries>
-      {' '}
       <div className="container countries__container">
-        {renderCountries?.map((country) => (
-          <Country key={country.name.common} country={country} />
-        ))}
+        {filtered && filtered.length === 0 ? (
+          <h4> No Contacts Matched</h4>
+        ) : (
+          renderCountries?.map((country, i) => (
+            <Country key={i} country={country} />
+          ))
+        )}
       </div>
     </StyledCountries>
   );

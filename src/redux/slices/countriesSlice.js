@@ -7,6 +7,7 @@ import axios from 'axios';
 
 //axios config
 const baseURL = 'https://restcountries.com/v2';
+// const baseURL = 'https://restcountries.com/v3.1';
 export const countryApi = axios.create({
   baseURL,
 });
@@ -72,26 +73,35 @@ export const getBorCountry = createAsyncThunk(
 const initialState = {
   countries: [
     {
-      name: {
-        common: 'Peru',
-      },
+      name: 'Peru',
       population: 12971846,
       capital: ['Leman'],
       region: 'Americas',
     },
     {
-      name: {
-        common: 'USA',
-      },
-      population: 22971846,
-      capital: ['Ama'],
-      region: 'Europe',
+      name: 'Peru',
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
+    {
+      name: 'Peru',
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
+    },
+    {
+      name: 'Peru',
+      population: 12971846,
+      capital: ['Leman'],
+      region: 'Americas',
     },
   ],
   country: {},
   status: 'idle', //  || succeeded || pending || failed
   darkMode: false,
-  filtered: [],
+  //   filtered: null,
+  filtered: null,
   error: null,
 };
 
@@ -118,7 +128,7 @@ export const countriesSlice = createSlice({
       //   state.filtered = selectFiltered(action.payload);
     },
     clearFiltered(state) {
-      state.filtered = [];
+      state.filtered = null;
     },
   },
   extraReducers(builder) {
@@ -143,8 +153,8 @@ export const countriesSlice = createSlice({
       })
       .addCase(getCountry.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload.message;
-        console.log(action.payload.message);
+        state.error = action.payload;
+        console.log(action.payload);
       })
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = 'succeeded';

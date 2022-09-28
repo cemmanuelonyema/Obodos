@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const StyledDetails = styled.section`
   .details__container {
-    a {
+    .btn {
       display: inline-flex;
       gap: 1rem;
       align-items: center;

@@ -51,6 +51,7 @@ body {
 a {
   text-decoration: none;
   color: var(--text);
+  display: inline-block;
 }
 
 img{

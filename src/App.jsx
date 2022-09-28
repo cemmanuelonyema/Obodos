@@ -15,19 +15,7 @@ import { GlobalStyles } from './styles/GlobalStyles.js';
 export const App = () => {
   //hooks
   const { darkMode } = useSelector(selectCountries);
-  const dispatch = useDispatch();
 
-  // set theme according to user default setting
-  //   useEffect(() => {
-  //     const savedTheme = localStorage.getItem('theme');
-  //     console.log(savedTheme);
-  //     const prefersDark =
-  //       window.matchMedia &&
-  //       window.matchMedia('(prefers-color-scheme: dark)').matches;
-  //     if (prefersDark) {
-  //       dispatch(setMode());
-  //     }
-  //   }, []);
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
       <GlobalStyles />

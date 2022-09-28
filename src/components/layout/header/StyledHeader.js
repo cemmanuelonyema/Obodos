@@ -4,7 +4,6 @@ export const StyledHeader = styled.header`
   box-shadow: 0 1px 6px 0 var(--shadow);
   background-color: var(--element);
   color: var(--text);
-  padding: 2rem 0;
 
   .header__container {
     display: flex;

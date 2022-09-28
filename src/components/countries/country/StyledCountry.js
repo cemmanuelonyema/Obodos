@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const StyledCountry = styled(Link)`
+  /* width: auto;
+
+  min-width: 22rem; */
+  /* max-width: 37rem; */
+  /* width: 100%; */
+
   .country {
     box-shadow: 0 2rem 5rem 1rem var(--shadow2);
     font-size: 1.6rem;

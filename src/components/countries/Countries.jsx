@@ -6,10 +6,11 @@ import {
   getCountries,
   selectCountries,
 } from '../../redux/slices/countriesSlice';
+import { Skeleton } from '../layout/skeleton/Skeleton';
 
 export const Countries = () => {
   //hooks
-  const { countries, filtered } = useSelector(selectCountries);
+  const { countries, filtered, status } = useSelector(selectCountries);
   const dispatch = useDispatch();
 
   //useEffect
@@ -20,6 +21,21 @@ export const Countries = () => {
 
   const renderCountries = filtered ? filtered : countries;
 
+  //loading
+  if (status === 'loading') {
+    const load = [1, 2, 3, 4, 5, 6, 7, 8, , 9, 10, 11, 12];
+    return (
+      <StyledCountries>
+        <div className="container countries__container">
+          {load.map((x, i) => (
+            <Skeleton key={i} />
+          ))}
+        </div>
+      </StyledCountries>
+    );
+  }
+
+  //jsx
   return (
     <StyledCountries>
       <div className="container countries__container">

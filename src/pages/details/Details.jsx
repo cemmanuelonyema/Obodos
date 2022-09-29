@@ -11,9 +11,10 @@ import {
   getCountry,
   selectCountries,
 } from '../../redux/slices/countriesSlice';
+import { SelectSkeleton } from '../../components/layout/skeleton/SelectSkeleton';
 
 export const Details = () => {
-  const { country } = useSelector(selectCountries);
+  const { country, status } = useSelector(selectCountries);
   const { name } = useParams();
   const dispatch = useDispatch();
 
@@ -32,7 +33,11 @@ export const Details = () => {
           <FaArrowAltCircleLeft />
           Back
         </Link>
-        <SelectCountry country={country} />
+        {status === 'loading' ? (
+          <SelectSkeleton />
+        ) : (
+          <SelectCountry country={country} />
+        )}
       </div>
     </StyledDetails>
   );

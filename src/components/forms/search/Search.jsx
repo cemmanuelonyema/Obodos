@@ -3,9 +3,7 @@ import { FaTimes, FaSearch } from 'react-icons/fa';
 import { StyledSearch } from './StyledSearch.js';
 import { useDispatch } from 'react-redux';
 import {
-  filterCountries,
   clearFiltered,
-  getCountry,
   filterCountry,
 } from '../../../redux/slices/countriesSlice';
 
@@ -25,7 +23,7 @@ export const Search = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchQuery) dispatch(filterCountry(searchQuery));
-    }, 1000);
+    }, 700);
 
     //clean up - runs on every rerender
     return () => {

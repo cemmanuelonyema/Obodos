@@ -1,23 +1,21 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { FaArrowAltCircleLeft } from 'react-icons/fa';
 
 import { StyledDetails } from './StyledDetails';
-import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { SelectCountry } from '../../components/countries/selectCountry/SelectCountry';
-import { getCountry, selectCountries } from '../../redux/slices/countriesSlice';
 import { SelectSkeleton } from '../../components/layout/skeleton/SelectSkeleton';
+import { useGetCountryByCodeQuery } from '../../redux/slices/apiSlice';
 
 export const Details = () => {
-  const { country, status } = useSelector(selectCountries);
-  const { name } = useParams();
-  const dispatch = useDispatch();
+  //param slug
+  const { param } = useParams();
 
-  useEffect(() => {
-    dispatch(getCountry(name));
-  }, [name]);
+  //hooks
+  const { data, isLoading } = useGetCountryByCodeQuery(param);
 
+  //jsx
   return (
     <StyledDetails>
       <div className="container details__container">
@@ -25,11 +23,7 @@ export const Details = () => {
           <FaArrowAltCircleLeft />
           Back
         </Link>
-        {status === 'loading' ? (
-          <SelectSkeleton />
-        ) : (
-          <SelectCountry country={country} />
-        )}
+        {isLoading ? <SelectSkeleton /> : <SelectCountry country={data} />}
       </div>
     </StyledDetails>
   );

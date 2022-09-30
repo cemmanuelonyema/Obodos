@@ -3,7 +3,7 @@ import { StyledCountry } from './StyledCountry.js';
 
 export const Country = ({ country }) => {
   return (
-    <StyledCountry to={`countries/${country?.name}`}>
+    <StyledCountry to={`/countries/${country?.alpha3Code}`}>
       <article className="country">
         <div className="country__img">
           <img src={country?.flag} alt="country image" />

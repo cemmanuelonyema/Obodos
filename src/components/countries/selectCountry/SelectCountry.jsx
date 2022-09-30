@@ -59,7 +59,7 @@ export const SelectCountry = ({ country }) => {
             <h4>Border countries</h4>
             <div className="border">
               {country?.borders?.map((bor) => (
-                <Link to={`countries/${bor}`}>
+                <Link key={bor} to={`/countries/${bor}`}>
                   {' '}
                   <span className="border-box">{bor}</span>
                 </Link>

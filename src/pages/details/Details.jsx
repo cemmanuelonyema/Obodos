@@ -6,11 +6,7 @@ import { useParams } from 'react-router-dom';
 import { StyledDetails } from './StyledDetails';
 import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { SelectCountry } from '../../components/countries/selectCountry/SelectCountry';
-import {
-  getBorCountry,
-  getCountry,
-  selectCountries,
-} from '../../redux/slices/countriesSlice';
+import { getCountry, selectCountries } from '../../redux/slices/countriesSlice';
 import { SelectSkeleton } from '../../components/layout/skeleton/SelectSkeleton';
 
 export const Details = () => {
@@ -19,11 +15,7 @@ export const Details = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (name.length > 3) {
-      dispatch(getCountry(name));
-    } else {
-      dispatch(getBorCountry(name));
-    }
+    dispatch(getCountry(name));
   }, [name]);
 
   return (

@@ -7,10 +7,14 @@ export const apiSlice = createApi({
     getCountries: builder.query({
       query: () => '/all',
     }),
-    getCountry: builder.query({
+    getCountryByCode: builder.query({
       query: (param) => `/alpha/${param}`,
     }),
   }),
 });
 
-export const { useGetCountriesQuery, useGetCountryQuery } = apiSlice;
+export const {
+  useGetCountriesQuery,
+  useGetCountryByNameQuery,
+  useGetCountryByCodeQuery,
+} = apiSlice;

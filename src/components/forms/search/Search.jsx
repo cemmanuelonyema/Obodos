@@ -4,10 +4,13 @@ import { StyledSearch } from './StyledSearch.js';
 import { useDispatch } from 'react-redux';
 import {
   filterCountries,
+  //   getCountry,
   clearFiltered,
-  getCountry,
   filterCountry,
+  filtered,
 } from '../../../redux/slices/countriesSlice';
+import { useGetCountryByNameQuery } from '../../../redux/slices/apiSlice.js';
+// import { useDebounce } from '../../../hooks/useDebounce.js';
 
 export const Search = () => {
   //hooks
@@ -25,13 +28,18 @@ export const Search = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchQuery) dispatch(filterCountry(searchQuery));
-    }, 1000);
+    }, 700);
 
     //clean up - runs on every rerender
     return () => {
       clearTimeout(timeoutId);
     };
   }, [searchQuery]);
+
+  //   const debouncedQuery = useDebounce(searchQuery, 1000);
+
+  //   const { data } = useGetCountryByNameQuery(searchQuery);
+  //   dispatch(filtered(data));
 
   return (
     <StyledSearch onSubmit={(e) => e.preventDefault()}>

@@ -1,8 +1,4 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createSelector,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 //axios config
@@ -13,29 +9,11 @@ export const countryApi = axios.create({
 });
 
 //Async Thunks
-export const getCountries = createAsyncThunk(
-  'countries/getCountries',
-  async (thunkApi) => {
+export const filterCountry = createAsyncThunk(
+  'countries/filterCountry',
+  async (name, { rejectWithValue }) => {
     try {
-      const res = await countryApi.get('/all');
-      console.log(res.data);
-      return res.data;
-    } catch (err) {
-      console.log(err);
-      return thunkApi.rejectWithValue(err);
-    }
-  }
-);
-
-export const getCountry = createAsyncThunk(
-  'countries/getCountry',
-  async (code, { rejectWithValue }) => {
-    try {
-      //   const res = await countryApi.get(`/name/${name}?fullText=true`);
-      const res = await countryApi.get(`/alpha/${code}`);
-
-      //   const [data] = res.data; // destructure data off the arr of res
-      console.log(res);
+      const res = await countryApi.get(`/name/${name}`);
       return res.data;
     } catch (err) {
       console.log(err.message);
@@ -43,11 +21,11 @@ export const getCountry = createAsyncThunk(
     }
   }
 );
-export const filterCountry = createAsyncThunk(
-  'countries/filterCountry',
-  async (name, { rejectWithValue }) => {
+export const filterRegion = createAsyncThunk(
+  'countries/filterRegion',
+  async (value, { rejectWithValue }) => {
     try {
-      const res = await countryApi.get(`/name/${name}`);
+      const res = await countryApi.get(`/region/${value}`);
       //   const [data] = res.data; // destructure data off the arr of res
       return res.data;
     } catch (err) {
@@ -59,36 +37,34 @@ export const filterCountry = createAsyncThunk(
 
 //State
 const initialState = {
-  countries: [
-    {
-      name: 'Peru',
-      population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
-    },
-    {
-      name: 'Peru',
-      population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
-    },
-    {
-      name: 'Peru',
-      population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
-    },
-    {
-      name: 'Peru',
-      population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
-    },
-  ],
-  country: {},
-  status: 'idle', //  || succeeded || pending || failed
+  //   countries: [
+  //     {
+  //       name: 'Peru',
+  //       population: 12971846,
+  //       capital: ['Leman'],
+  //       region: 'Americas',
+  //     },
+  //     {
+  //       name: 'Peru',
+  //       population: 12971846,
+  //       capital: ['Leman'],
+  //       region: 'Americas',
+  //     },
+  //     {
+  //       name: 'Peru',
+  //       population: 12971846,
+  //       capital: ['Leman'],
+  //       region: 'Americas',
+  //     },
+  //     {
+  //       name: 'Peru',
+  //       population: 12971846,
+  //       capital: ['Leman'],
+  //       region: 'Americas',
+  //     },
+  //   ],
+  //   status: 'idle', //  || succeeded || pending || failed
   darkMode: false,
-  //   filtered: null,
   filtered: null,
   error: null,
 };
@@ -105,51 +81,12 @@ export const countriesSlice = createSlice({
       const theme = state.darkMode ? 'dark ' : 'light';
       localStorage.setItem('theme', theme);
     },
-    filterCountries(state, action) {
-      state.filtered = state.countries.filter((country) => {
-        console.log('payload:', action.payload);
-        const regex = new RegExp(`${action.payload}`, 'gi');
-        const name = country.name.common.match(regex);
-        const region = country.region.match(regex);
-        return name || region;
-      });
-      //   state.filtered = selectFiltered(action.payload);
-    },
     clearFiltered(state) {
       state.filtered = null;
     },
   },
   extraReducers(builder) {
     builder
-      //getCountries
-      .addCase(getCountries.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(getCountries.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload;
-        console.log(action.payload);
-      })
-      .addCase(getCountries.fulfilled, (state, action) => {
-        // console.log(action.payload);
-        state.status = 'succeeded';
-        state.countries = action.payload;
-      })
-      //getCountry
-      .addCase(getCountry.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(getCountry.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload;
-        console.log(action.payload);
-      })
-      .addCase(getCountry.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.country = action.payload;
-        console.log(state.country);
-      })
-
       //filterCountry
       .addCase(filterCountry.pending, (state) => {
         state.status = 'loading';
@@ -163,16 +100,32 @@ export const countriesSlice = createSlice({
         state.status = 'succeeded';
         state.filtered = action.payload;
         console.log(state.country);
+      })
+      //filterRegion
+      .addCase(filterRegion.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(filterRegion.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.payload;
+        console.log(action.payload);
+      })
+      .addCase(filterRegion.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.filtered = action.payload;
+        console.log(state.country);
       });
   },
 });
 
-export const { setMode, filterCountries, clearFiltered } =
+export const { setMode, filterCountries, clearFiltered, filtered } =
   countriesSlice.actions;
+
 export default countriesSlice.reducer;
 
 //Selectors
 export const selectCountries = (state) => state.countriesSlice;
+// export const selectFilterCountries = (state, query) => state.cou;
 
 // export const selectFiltered = createSelector(
 //   [selectCountries],

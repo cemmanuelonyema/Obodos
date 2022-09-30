@@ -7,6 +7,7 @@ import {
   selectCountries,
 } from '../../redux/slices/countriesSlice';
 import { Skeleton } from '../layout/skeleton/Skeleton';
+import { useGetCountriesQuery } from '../../redux/slices/apiSlice';
 
 export const Countries = () => {
   //hooks
@@ -16,13 +17,18 @@ export const Countries = () => {
   //useEffect
   useEffect(() => {
     //Async Action
-    dispatch(getCountries());
+    // dispatch(getCountries());
+    // useGetCountries();
   }, []);
 
-  const renderCountries = filtered ? filtered : countries;
+  const { data, error, isLoading } = useGetCountriesQuery();
+  console.log('data:', data);
+
+  const renderCountries = filtered ? filtered : data;
 
   //loading
-  if (status === 'loading') {
+  //   if (status === 'loading') {
+  if (isLoading) {
     const load = [1, 2, 3, 4, 5, 6, 7, 8, , 9, 10, 11, 12];
     return (
       <StyledCountries>
@@ -42,6 +48,7 @@ export const Countries = () => {
         {filtered && filtered.length === 0 ? (
           <h4> No Contacts Matched</h4>
         ) : (
+          //   data?.map((country, i) => <Country key={i} country={country} />)
           renderCountries?.map((country, i) => (
             <Country key={i} country={country} />
           ))

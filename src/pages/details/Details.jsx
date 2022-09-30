@@ -8,15 +8,18 @@ import { FaArrowAltCircleLeft } from 'react-icons/fa';
 import { SelectCountry } from '../../components/countries/selectCountry/SelectCountry';
 import { getCountry, selectCountries } from '../../redux/slices/countriesSlice';
 import { SelectSkeleton } from '../../components/layout/skeleton/SelectSkeleton';
+import { useGetCountryQuery } from '../../redux/slices/apiSlice';
 
 export const Details = () => {
   const { country, status } = useSelector(selectCountries);
-  const { name } = useParams();
+  const { param } = useParams();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(getCountry(name));
-  }, [name]);
+  //   useEffect(() => {
+  //     dispatch(getCountry(param));
+  //   }, [param]);
+
+  const { data, error, isLoading } = useGetCountryQuery(param);
 
   return (
     <StyledDetails>
@@ -25,11 +28,8 @@ export const Details = () => {
           <FaArrowAltCircleLeft />
           Back
         </Link>
-        {status === 'loading' ? (
-          <SelectSkeleton />
-        ) : (
-          <SelectCountry country={country} />
-        )}
+        {/* {status === 'loading' ? ( */}
+        {isLoading ? <SelectSkeleton /> : <SelectCountry country={data} />}
       </div>
     </StyledDetails>
   );

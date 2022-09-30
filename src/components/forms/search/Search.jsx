@@ -3,14 +3,9 @@ import { FaTimes, FaSearch } from 'react-icons/fa';
 import { StyledSearch } from './StyledSearch.js';
 import { useDispatch } from 'react-redux';
 import {
-  filterCountries,
-  //   getCountry,
   clearFiltered,
   filterCountry,
-  filtered,
 } from '../../../redux/slices/countriesSlice';
-import { useGetCountryByNameQuery } from '../../../redux/slices/apiSlice.js';
-// import { useDebounce } from '../../../hooks/useDebounce.js';
 
 export const Search = () => {
   //hooks
@@ -35,11 +30,6 @@ export const Search = () => {
       clearTimeout(timeoutId);
     };
   }, [searchQuery]);
-
-  //   const debouncedQuery = useDebounce(searchQuery, 1000);
-
-  //   const { data } = useGetCountryByNameQuery(searchQuery);
-  //   dispatch(filtered(data));
 
   return (
     <StyledSearch onSubmit={(e) => e.preventDefault()}>

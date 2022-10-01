@@ -4,7 +4,7 @@ import { StyledSkeleton } from './StyledSkeleton';
 export const SelectSkeleton = () => {
   return (
     <StyledSkeleton>
-      <div className="container select skeleton">
+      <div className="container select">
         <div className="image"></div>
         <div className="details">
           <span></span>

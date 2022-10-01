@@ -3,10 +3,12 @@ import styled from 'styled-components';
 export const StyledSkeleton = styled.article`
   .skeleton {
     box-shadow: 0 1px 6px 0 var(--shadow);
+    animation: skeleton-loading 1s linear infinite alternate;
+    padding: 2rem;
   }
 
   .image {
-    background-color: green;
+    background-color: white;
     height: 20rem;
   }
 
@@ -15,7 +17,7 @@ export const StyledSkeleton = styled.article`
   }
   span {
     display: block;
-    background-color: red;
+    background-color: white;
     width: 70%;
     padding: 8px;
     margin-bottom: 1rem;
@@ -55,6 +57,15 @@ export const StyledSkeleton = styled.article`
         display: block;
         /* width: 10rem; */
       }
+    }
+  }
+
+  @keyframes skeleton-loading {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
     }
   }
 `;

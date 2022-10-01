@@ -14,10 +14,12 @@ This is a solution to the [REST Countries API with color theme switcher challeng
     - [Links](#links)
   - [My process](#my-process)
     - [Built with](#built-with)
+    - [What I learned](#what-i-learned)
+      - [Redux toolkit](#redux-toolkit)
+      - [throttling and debounce func to avoid instantaneous api calls](#throttling-and-debounce-func-to-avoid-instantaneous-api-calls)
     - [Useful resources](#useful-resources)
   - [Author](#author)
 - [Frontend Mentor - REST Countries API with color theme switcher](#frontend-mentor---rest-countries-api-with-color-theme-switcher)
-  - [Cloning and setting up this project](#cloning-and-setting-up-this-project)
   - [Deployment](#deployment)
   - [Thank you very much for checking out my project 🙌🙌](#thank-you-very-much-for-checking-out-my-project-)
     - [Please, if you have or know of any opening for software developer position, contact me through](#please-if-you-have-or-know-of-any-opening-for-software-developer-position-contact-me-through)
@@ -26,7 +28,7 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 
 ### The challenge
 
-Your challenge is to integrate with the [REST Countries V2 API](https://restcountries.com/#api-endpoints-v2) to pull country data and build out the project to the designs inside the `/design` folder.
+The challenge is to integrate with the [REST Countries V2 API](https://restcountries.com/#api-endpoints-v2) to pull country data and build out the project to the designs inside the `/design` folder.
 
 Users should be able to:
 
@@ -39,7 +41,6 @@ Users should be able to:
 
 ### Links
 
-- [Github URL](https://github.com/cemmanuelonyema/Obodos)
 - [Live Site URL](https://obodos.netlify.app/)
 
 ## My process
@@ -50,31 +51,38 @@ Users should be able to:
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
+- Mobile-responsive workflow
+- React Router
 - [React](https://reactjs.org/) - JS library
 - [Styled Components](https://styled-components.com/) - For styles
-<!--
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+Some of my major learnings while working through this project.
 
---- Redux toolkit
-1-- Async thunk action creator
+#### Redux toolkit
+
+- Async thunk
+- RTQ query
+
+#### throttling and debounce func to avoid instantaneous api calls
+
+```js
+useEffect(() => {
+  const timeoutId = setTimeout(() => {
+    if (searchQuery) dispatch(filterCountry(searchQuery));
+  }, 700);
+
+  //clean up - runs on every rerender
+  return () => {
+    clearTimeout(timeoutId);
+  };
+}, [searchQuery]);
+```
+
+<!--
 2-- writing memo selectors
 3-- Regex search and filter
-4-- throttling and debounce func to avoid instantaneous api calls
-useEffect(() => {
-const timeoutId = setTimeout(() => {
-if (searchQuery) dispatch(getCountry(searchQuery));
-}, 1000);
-
-    //clean up - runs on every rerender
-    return () => {
-      clearTimeout(timeoutId);
-    };
-
-}, [searchQuery]);
 
 I faced the useState async update issue, where my searchQuery was always (last) letter short
 const handleChange = (e) => {
@@ -85,28 +93,6 @@ dispatch(filterCountries(searchQuery));
 
 i solved it with useEffect keeping the searchQuery as a dependency, that way its always updated
 
-useEffect(() => {
-console.log(searchQuery);
-dispatch(filterCountries(searchQuery));
-}, [searchQuery]);
-
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
-
-````js
-const proudOfThisFunc = () => {
-  console.log("🎉");
-};
-``` -->
 
 <!-- ### Continued development
 
@@ -139,7 +125,7 @@ This is where you can give a hat tip to anyone who helped you out on this projec
 
 There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
 
-## Cloning and setting up this project
+<!-- ## Cloning and setting up this project -->
 
 <!-- Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
 
@@ -163,4 +149,7 @@ There is also a `style-guide.md` file containing the information you'll need, su
 - LinkedIN - [@emmanuel-c-onyema](https://www.linkedin.com/in/emmanuel-c-onyema/)
 
 🚀
-````
+
+```
+
+```

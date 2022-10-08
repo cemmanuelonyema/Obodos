@@ -2,11 +2,21 @@ import styled from 'styled-components';
 
 export const StyledSkeleton = styled.article`
   .skeleton {
-    box-shadow: 0 1px 6px 0 var(--shadow);
+    animation: skeleton-loading 1s linear infinite alternate;
+    padding: 2rem;
+
+    @keyframes skeleton-loading {
+      0% {
+        background-color: #fff;
+      }
+      100% {
+        background-color: #fefefe;
+      }
+    }
   }
 
   .image {
-    background-color: green;
+    background-color: #f3f3f3;
     height: 20rem;
   }
 
@@ -15,7 +25,7 @@ export const StyledSkeleton = styled.article`
   }
   span {
     display: block;
-    background-color: red;
+    background-color: #f3f3f3;
     width: 70%;
     padding: 8px;
     margin-bottom: 1rem;

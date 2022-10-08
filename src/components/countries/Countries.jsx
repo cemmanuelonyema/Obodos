@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Country } from './country/Country';
-import { StyledCountries } from './StyledCountries.js';
+import { StyledCountries } from './StyledCountries.jsx';
 import {
   getCountries,
   selectCountries,

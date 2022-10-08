@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyledCountry } from './StyledCountry.js';
+import { StyledCountry } from './StyledCountry.jsx';
 
 export const Country = ({ country }) => {
   return (

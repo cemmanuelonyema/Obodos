@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaTimes, FaSearch } from 'react-icons/fa';
-import { StyledSearch } from './StyledSearch.js';
+import { StyledSearch } from './StyledSearch.jsx';
 import { useDispatch } from 'react-redux';
 import {
   filterCountries,
@@ -8,6 +8,7 @@ import {
   getCountry,
   filterCountry,
 } from '../../../redux/slices/countriesSlice';
+import './StyledSearch';
 
 export const Search = () => {
   //hooks

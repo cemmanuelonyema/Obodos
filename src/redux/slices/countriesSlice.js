@@ -14,10 +14,8 @@ export const getCountries = createAsyncThunk(
   async (thunkApi) => {
     try {
       const res = await countryApi.get('/all');
-      console.log(res.data);
       return res.data;
     } catch (err) {
-      console.log(err);
       return thunkApi.rejectWithValue(err);
     }
   }
@@ -27,14 +25,9 @@ export const getCountry = createAsyncThunk(
   'countries/getCountry',
   async (code, { rejectWithValue }) => {
     try {
-      //   const res = await countryApi.get(`/name/${name}?fullText=true`);
       const res = await countryApi.get(`/alpha/${code}`);
-
-      //   const [data] = res.data; // destructure data off the arr of res
-      console.log(res);
       return res.data;
     } catch (err) {
-      console.log(err.message);
       return rejectWithValue(err.message());
     }
   }
@@ -108,10 +101,8 @@ export const countriesSlice = createSlice({
       .addCase(getCountries.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
-        console.log(action.payload);
       })
       .addCase(getCountries.fulfilled, (state, action) => {
-        // console.log(action.payload);
         state.status = 'succeeded';
         state.countries = action.payload;
       })
@@ -122,12 +113,10 @@ export const countriesSlice = createSlice({
       .addCase(getCountry.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
-        console.log(action.payload);
       })
       .addCase(getCountry.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.country = action.payload;
-        console.log(state.country);
       });
   },
 });

@@ -24,7 +24,6 @@ export const Search = () => {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (searchQuery) dispatch(filterCountries(searchQuery));
-      console.log(searchQuery);
     }, 1000);
 
     //clean up - runs on every rerender

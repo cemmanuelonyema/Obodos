@@ -1,11 +1,8 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { StyledSelectCountry } from './StyledSelectCountry';
 
 export const SelectCountry = ({ country }) => {
-  const navigate = useNavigate();
-  console.log(country);
-  console.log(country.languages);
   return (
     <StyledSelectCountry>
       <div className="selectCountry__container">

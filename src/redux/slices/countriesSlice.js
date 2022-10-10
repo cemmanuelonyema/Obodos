@@ -1,8 +1,4 @@
-import {
-  createSlice,
-  createAsyncThunk,
-  createSelector,
-} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 //axios config
@@ -43,28 +39,15 @@ export const getCountry = createAsyncThunk(
     }
   }
 );
-export const filterCountry = createAsyncThunk(
-  'countries/filterCountry',
-  async (name, { rejectWithValue }) => {
-    try {
-      const res = await countryApi.get(`/name/${name}`);
-      //   const [data] = res.data; // destructure data off the arr of res
-      return res.data;
-    } catch (err) {
-      console.log(err.message);
-      return rejectWithValue(err.message());
-    }
-  }
-);
 
 //State
 const initialState = {
   countries: [
     {
-      name: 'Peru',
+      name: 'Nigeria',
       population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
+      capital: ['Abuja'],
+      region: 'Africa',
     },
     {
       name: 'Peru',
@@ -73,22 +56,21 @@ const initialState = {
       region: 'Americas',
     },
     {
-      name: 'Peru',
+      name: 'Niger',
       population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
+      capital: ['lema'],
+      region: 'Africa',
     },
     {
-      name: 'Peru',
+      name: 'China',
       population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
+      capital: ['yeman'],
+      region: 'Asia',
     },
   ],
   country: {},
   status: 'idle', //  || succeeded || pending || failed
   darkMode: false,
-  //   filtered: null,
   filtered: null,
   error: null,
 };
@@ -107,13 +89,11 @@ export const countriesSlice = createSlice({
     },
     filterCountries(state, action) {
       state.filtered = state.countries.filter((country) => {
-        console.log('payload:', action.payload);
         const regex = new RegExp(`${action.payload}`, 'gi');
-        const name = country.name.common.match(regex);
+        const name = country.name.match(regex);
         const region = country.region.match(regex);
         return name || region;
       });
-      //   state.filtered = selectFiltered(action.payload);
     },
     clearFiltered(state) {
       state.filtered = null;
@@ -148,21 +128,6 @@ export const countriesSlice = createSlice({
         state.status = 'succeeded';
         state.country = action.payload;
         console.log(state.country);
-      })
-
-      //filterCountry
-      .addCase(filterCountry.pending, (state) => {
-        state.status = 'loading';
-      })
-      .addCase(filterCountry.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.payload;
-        console.log(action.payload);
-      })
-      .addCase(filterCountry.fulfilled, (state, action) => {
-        state.status = 'succeeded';
-        state.filtered = action.payload;
-        console.log(state.country);
       });
   },
 });
@@ -173,16 +138,3 @@ export default countriesSlice.reducer;
 
 //Selectors
 export const selectCountries = (state) => state.countriesSlice;
-
-// export const selectFiltered = createSelector(
-//   [selectCountries],
-//   (countries, payload) => {
-//     countries.filter((country) => {
-//       console.log('payload:', payload);
-//       const regex = new RegExp(`${payload}`, 'gi');
-//       const name = country.name.common.match(regex);
-//       const region = country.region.match(regex);
-//       return name || region;
-//     });
-//   }
-// );

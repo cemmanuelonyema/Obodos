@@ -7,9 +7,7 @@ export const StyledSelectCountry = styled.article`
   .selectCountry__container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    /* align-items: center; */
     gap: 3rem;
-    /* display: flex; */
 
     @media screen and (max-width: 37.5em) {
       grid-template-columns: 1fr;
@@ -59,12 +57,10 @@ export const StyledSelectCountry = styled.article`
   }
 
   .border {
-    /* display: flex;
-    align-items: center; */
-    gap: 2rem;
-
+    width: 65%;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
     /* grid-template-rows:  */
 
     @media screen and (max-width: 37.5em) {
@@ -76,7 +72,6 @@ export const StyledSelectCountry = styled.article`
       display: inline-block;
       padding: 1rem 2rem;
       background-color: var(--element);
-      /* border: 1px solid black; */
       box-shadow: 0 1px 6px 0 var(--shadow);
     }
   }

@@ -28,6 +28,31 @@ export const getCountry = createAsyncThunk(
       const res = await countryApi.get(`/alpha/${code}`);
       return res.data;
     } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
+
+export const filterCountry = createAsyncThunk(
+  'countries/filterCountry',
+  async (name, { rejectWithValue }) => {
+    try {
+      const res = await countryApi.get(`/name/${name}`);
+      return res.data;
+    } catch (err) {
+      console.log(err.message);
+      return rejectWithValue(err.message());
+    }
+  }
+);
+
+export const filterRegion = createAsyncThunk(
+  'countries/filterRegion',
+  async (value, { rejectWithValue }) => {
+    try {
+      const res = await countryApi.get(`/region/${value}`);
+      return res.data;
+    } catch (err) {
       return rejectWithValue(err.message());
     }
   }
@@ -36,30 +61,30 @@ export const getCountry = createAsyncThunk(
 //State
 const initialState = {
   countries: [
-    {
-      name: 'Nigeria',
-      population: 12971846,
-      capital: ['Abuja'],
-      region: 'Africa',
-    },
-    {
-      name: 'Peru',
-      population: 12971846,
-      capital: ['Leman'],
-      region: 'Americas',
-    },
-    {
-      name: 'Niger',
-      population: 12971846,
-      capital: ['lema'],
-      region: 'Africa',
-    },
-    {
-      name: 'China',
-      population: 12971846,
-      capital: ['yeman'],
-      region: 'Asia',
-    },
+    // {
+    //   name: 'Nigeria',
+    //   population: 12971846,
+    //   capital: ['Abuja'],
+    //   region: 'Africa',
+    // },
+    // {
+    //   name: 'Peru',
+    //   population: 12971846,
+    //   capital: ['Leman'],
+    //   region: 'Americas',
+    // },
+    // {
+    //   name: 'Niger',
+    //   population: 12971846,
+    //   capital: ['lema'],
+    //   region: 'Africa',
+    // },
+    // {
+    //   name: 'China',
+    //   population: 12971846,
+    //   capital: ['yeman'],
+    //   region: 'Asia',
+    // },
   ],
   country: {},
   status: 'idle', //  || succeeded || pending || failed
@@ -123,6 +148,7 @@ export const countriesSlice = createSlice({
 
 export const { setMode, filterCountries, clearFiltered } =
   countriesSlice.actions;
+
 export default countriesSlice.reducer;
 
 //Selectors

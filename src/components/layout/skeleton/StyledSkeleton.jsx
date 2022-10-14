@@ -10,19 +10,20 @@ export const StyledSkeleton = styled.article`
         background-color: #fff;
       }
       100% {
-        background-color: #fefefe;
+        background-color: #f3f3f3;
       }
     }
   }
 
   .image {
-    background-color: #f3f3f3;
+    background-color: #fff;
     height: 20rem;
   }
 
   .content {
     padding: 2rem;
   }
+
   span {
     display: block;
     background-color: #f3f3f3;
@@ -63,7 +64,6 @@ export const StyledSkeleton = styled.article`
 
       span {
         display: block;
-        /* width: 10rem; */
       }
     }
   }

@@ -6,11 +6,14 @@ import { StyledFilter } from './StyledFilter';
 
 export const Filter = () => {
   const dispatch = useDispatch();
-  const handleChange = (e) => dispatch(filterCountries(e.target.value));
+  //   const handleChange = (e) => dispatch(filterCountries(e.target.value));
 
   return (
     <StyledFilter>
-      <select name="label" onChange={handleChange}>
+      <select
+        name="label"
+        onChange={(e) => dispatch(filterCountries(e.target.value))}
+      >
         <option>Filter by Region...</option>
         <option value="africa">Africa</option>
         <option value="americas">Americas</option>

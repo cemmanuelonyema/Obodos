@@ -21,7 +21,7 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path="countries/:name" element={<Details />} />
+          <Route path="countries/:param" element={<Details />} />
           {/* Automatically redirect to home if no page matched*/}
           <Route path="*" element={<Navigate replace to="/" />} />
         </Route>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Country } from './country/Country';
 import { StyledCountries } from './StyledCountries.jsx';
 import {
@@ -10,16 +10,12 @@ import { Skeleton } from '../layout/skeleton/Skeleton';
 
 export const Countries = () => {
   //hooks
-  const { countries, filtered, status } = useSelector(selectCountries);
+  const { filtered, countries, status } = useSelector(selectCountries);
   const dispatch = useDispatch();
 
-  //useEffect
   useEffect(() => {
-    //Async Action
     dispatch(getCountries());
   }, []);
-
-  const renderCountries = filtered ? filtered : countries;
 
   //loading
   if (status === 'loading') {
@@ -35,6 +31,8 @@ export const Countries = () => {
     );
   }
 
+  const renderData = filtered ? filtered : countries;
+
   //jsx
   return (
     <StyledCountries>
@@ -42,9 +40,7 @@ export const Countries = () => {
         {filtered && filtered.length === 0 ? (
           <h4> No Contacts Matched</h4>
         ) : (
-          renderCountries?.map((country, i) => (
-            <Country key={i} country={country} />
-          ))
+          renderData?.map((country, i) => <Country key={i} country={country} />)
         )}
       </div>
     </StyledCountries>

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { StyledSelectCountry } from './StyledSelectCountry';
 
 export const SelectCountry = ({ country }) => {
-  console.log(country);
   return (
     <StyledSelectCountry>
       <div className="selectCountry__container">

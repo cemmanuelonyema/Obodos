@@ -9,6 +9,30 @@ export const countryApi = axios.create({
 });
 
 //Async Thunks
+export const getCountries = createAsyncThunk(
+  'countries/getCountries',
+  async (thunkApi) => {
+    try {
+      const res = await countryApi.get('/all');
+      return res.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue(err);
+    }
+  }
+);
+
+export const getCountry = createAsyncThunk(
+  'countries/getCountry',
+  async (code, { rejectWithValue }) => {
+    try {
+      const res = await countryApi.get(`/alpha/${code}`);
+      return res.data;
+    } catch (err) {
+      return rejectWithValue(err);
+    }
+  }
+);
+
 export const filterCountry = createAsyncThunk(
   'countries/filterCountry',
   async (name, { rejectWithValue }) => {
@@ -21,15 +45,14 @@ export const filterCountry = createAsyncThunk(
     }
   }
 );
+
 export const filterRegion = createAsyncThunk(
   'countries/filterRegion',
   async (value, { rejectWithValue }) => {
     try {
       const res = await countryApi.get(`/region/${value}`);
-      //   const [data] = res.data; // destructure data off the arr of res
       return res.data;
     } catch (err) {
-      console.log(err.message);
       return rejectWithValue(err.message());
     }
   }
@@ -37,33 +60,34 @@ export const filterRegion = createAsyncThunk(
 
 //State
 const initialState = {
-  //   countries: [
-  //     {
-  //       name: 'Peru',
-  //       population: 12971846,
-  //       capital: ['Leman'],
-  //       region: 'Americas',
-  //     },
-  //     {
-  //       name: 'Peru',
-  //       population: 12971846,
-  //       capital: ['Leman'],
-  //       region: 'Americas',
-  //     },
-  //     {
-  //       name: 'Peru',
-  //       population: 12971846,
-  //       capital: ['Leman'],
-  //       region: 'Americas',
-  //     },
-  //     {
-  //       name: 'Peru',
-  //       population: 12971846,
-  //       capital: ['Leman'],
-  //       region: 'Americas',
-  //     },
-  //   ],
-  //   status: 'idle', //  || succeeded || pending || failed
+  countries: [
+    // {
+    //   name: 'Nigeria',
+    //   population: 12971846,
+    //   capital: ['Abuja'],
+    //   region: 'Africa',
+    // },
+    // {
+    //   name: 'Peru',
+    //   population: 12971846,
+    //   capital: ['Leman'],
+    //   region: 'Americas',
+    // },
+    // {
+    //   name: 'Niger',
+    //   population: 12971846,
+    //   capital: ['lema'],
+    //   region: 'Africa',
+    // },
+    // {
+    //   name: 'China',
+    //   population: 12971846,
+    //   capital: ['yeman'],
+    //   region: 'Asia',
+    // },
+  ],
+  country: {},
+  status: 'idle', //  || succeeded || pending || failed
   darkMode: false,
   filtered: null,
   error: null,
@@ -81,61 +105,51 @@ export const countriesSlice = createSlice({
       const theme = state.darkMode ? 'dark ' : 'light';
       localStorage.setItem('theme', theme);
     },
+    filterCountries(state, action) {
+      state.filtered = state.countries.filter((country) => {
+        const regex = new RegExp(`${action.payload}`, 'gi');
+        const name = country.name.match(regex);
+        const region = country.region.match(regex);
+        return name || region;
+      });
+    },
     clearFiltered(state) {
       state.filtered = null;
     },
   },
   extraReducers(builder) {
     builder
-      //filterCountry
-      .addCase(filterCountry.pending, (state) => {
+      //getCountries
+      .addCase(getCountries.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(filterCountry.rejected, (state, action) => {
+      .addCase(getCountries.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
-        console.log(action.payload);
       })
-      .addCase(filterCountry.fulfilled, (state, action) => {
+      .addCase(getCountries.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.filtered = action.payload;
-        console.log(state.country);
+        state.countries = action.payload;
       })
-      //filterRegion
-      .addCase(filterRegion.pending, (state) => {
+      //getCountry
+      .addCase(getCountry.pending, (state) => {
         state.status = 'loading';
       })
-      .addCase(filterRegion.rejected, (state, action) => {
+      .addCase(getCountry.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.payload;
-        console.log(action.payload);
       })
-      .addCase(filterRegion.fulfilled, (state, action) => {
+      .addCase(getCountry.fulfilled, (state, action) => {
         state.status = 'succeeded';
-        state.filtered = action.payload;
-        console.log(state.country);
+        state.country = action.payload;
       });
   },
 });
 
-export const { setMode, filterCountries, clearFiltered, filtered } =
+export const { setMode, filterCountries, clearFiltered } =
   countriesSlice.actions;
 
 export default countriesSlice.reducer;
 
 //Selectors
 export const selectCountries = (state) => state.countriesSlice;
-// export const selectFilterCountries = (state, query) => state.cou;
-
-// export const selectFiltered = createSelector(
-//   [selectCountries],
-//   (countries, payload) => {
-//     countries.filter((country) => {
-//       console.log('payload:', payload);
-//       const regex = new RegExp(`${payload}`, 'gi');
-//       const name = country.name.common.match(regex);
-//       const region = country.region.match(regex);
-//       return name || region;
-//     });
-//   }
-// );

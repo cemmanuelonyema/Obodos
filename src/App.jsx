@@ -5,7 +5,6 @@ import './styles/GlobalStyles.js';
 import { Layout } from './Layout';
 import { Details } from './pages/details/Details';
 import { Home } from './pages/home/Home';
-import { NotFound } from './pages/notfound/NotFound';
 import { ThemeProvider } from 'styled-components';
 import { useSelector } from 'react-redux';
 import { selectCountries } from './redux/slices/countriesSlice.js';
@@ -23,9 +22,8 @@ export const App = () => {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="countries/:param" element={<Details />} />
-          {/* Automatically redirect to home */}
-          {/* <Route path="*" element={<Navigate replace to="/" />} /> */}
-          <Route path="*" element={<NotFound />} />
+          {/* Automatically redirect to home if no page matched*/}
+          <Route path="*" element={<Navigate replace to="/" />} />
         </Route>
       </Routes>
     </ThemeProvider>

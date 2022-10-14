@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { FaTimes, FaSearch } from 'react-icons/fa';
-import { StyledSearch } from './StyledSearch.js';
+import { StyledSearch } from './StyledSearch.jsx';
 import { useDispatch } from 'react-redux';
 import {
   clearFiltered,
-  filterCountry,
+  filterCountries,
 } from '../../../redux/slices/countriesSlice';
+import './StyledSearch';
 
 export const Search = () => {
   //hooks
@@ -19,13 +20,11 @@ export const Search = () => {
     dispatch(clearFiltered());
   };
 
-  //useEffect
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      if (searchQuery) dispatch(filterCountry(searchQuery));
-    }, 700);
+      if (searchQuery) dispatch(filterCountries(searchQuery));
+    }, 500);
 
-    //clean up - runs on every rerender
     return () => {
       clearTimeout(timeoutId);
     };

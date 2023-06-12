@@ -22,7 +22,6 @@ export const GlobalStyles = createGlobalStyle`
   padding: 0;
   box-sizing: inherit;
   color: var(--text);
-  transition: all 0.5s ease-in-out;
 }
 
 html {
